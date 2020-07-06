@@ -88,7 +88,19 @@
 <br>
 
 * **Standard Source Control Workflow**
+  The goal of implementing an effective source control workflow is to mitigate the difficulty and risk in working on a codebase. 
+
+  Developers will often have to work on portions of the same code-base simultaneously. Issues can arise when one developer unknowingly overwrites another developers code, or two developers work on seperate version of the software but cannot make them compatible. 
+
+  Using services, such as Git and Mercurial, developers now have a lot more flexibility in how they approach these sorts of issues.
+
+  A common strategy is to develop features using branches. Branches allow developers to create a "copy" of the trunk that they can work on independent to the main codebase. It should be noted that one of the advantages of using Git, is that when a project is branched, the code-base is not actually copied in its entirety. Git essentially uses "pointers" to keep track of what and what does not exist in a codebase at any point in time.
   
+  Usually a branch is created for each new feature or bugfix, worked on and then merged back into the trunk when it is ready. Developers can then evaluates the differences between the trunk and the branch if the trunk has changed since the initial branch before the final merge.
+
+  The upshot of this workflow is it's easier to keep the trunk version of the software stable and ready for release if it's not deployed already. This also makes it much easier to isolate the changes that happen to the trunk branch through the branches that were worked on. 
+
+  A downside to this approach is that it can make testing more difficult if a developer branches a copy of the trunk, and then the trunk is further modified or added two after the branch has been created. This increases the likelihood of bugs once the branch is merged back into the trunk and increases the amount of time it takes to review the merge before it's committed.
   <details>
     <summary>Resources</summary>
     https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops
@@ -102,6 +114,17 @@
 <br>
 
 * **Automated Testing**
+  Before or early on in a projects timeline it is important to consider the role of testing. There are many different approaches to testing and no "right answer" as the needs of every project differs. Automated unit testing is just one small way that a developer can test software in order to ensure it functions correctly.
+
+  Unit testing is testing small bits of code to ensure they are giving the desired output. For example, if you designed a function, ideally it would take an input, and give you some kind of output. Unit testing looks at these smaller, fundamental functions and matches expected outputs with actual outputs.
+  
+  Using a test driven development (TDD) approach to create automated unit tests, the developer would first think about the function of the program and design the tests before the program itself. By using this approach, the developer intrinsically lays the foundation for a codebase that is more easily tested.
+
+  Once the test have been planned, the develop would then either create their own programmable tests or use third party software/programs to do so.
+
+  The next step is to actually create functions that pass these tests, and then refactor these functions into the wanted end program. Throughout the entire process the tests should always "pass". It is easy to imagine how much fore-thought needs to go into the program before a single line of code is written in order to create comprehensive TDD compliant unit tests for the lifetime of the project.
+
+  A huge advantage to using a TDD approach to create unit tests and then a program that will pass those tests is that it creates a robust code-base. If many of the smaller moving parts of a program are not intrinsically dependent on the whole program in order to function, they can be easily tested, debugged, modified and re-used elsewhere, potentially even in a different codebase.
   <details>
     <summary>Resources</summary>
     https://www.w3schools.in/software-testing/types/#Automation_Testing
