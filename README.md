@@ -138,10 +138,45 @@
 <br>
 
 * **Security requirements**
+
+  Talk about reqs re australian law
+
+  Things to cover 
+    - user information
+    - encryption of credentials
+    - storage of information
+    - payment details
+    - payment processing (PCI)
+    - sessions
+    - monitoring
+
+  For a marketplace web-application based on the Rails framework, there are some security requirements worth considering.
+
+  If we think about what a marketplace needs from a user in order to function correctly, we can break the term "security requirements" down into "How do we protect users in these areas?"
+
+  Most marketplace apps rely on user to user interaction. Because of this, we need to differentiate our users, which in turns means storing some kind of information, unique to each user. This could be as simple as a password and username, to a full documentation of email, phone number and address. Regardless, the approach should be the same in that we will be storing data unique to a single individual, and that data should be protected and private from other users/attackers. 
+
+  Additionally, sensitive credentials, such as passwords, phone numbers and addresses, could be encrypted to further protect user information from improper use. This would certainly be a requirement if user profiles contained any identifying information and is good practice in general for password storage regardless.
+
+  By the above argument, we can see that we will need to user a database system in order to store credentials, and ultimately, user products the web application. Therefore, we will be required to protect the database from SQL injection or other attacks that could compromise the database. 
+
+  Another aspect for consideration is payment. Arguably the easiest way to "avoid" dealing with payment logistics is to have the two users sort out how they will arrange payment outside of the web application altogether. 
+
+  Otherwise, it is imperative that we consider the PCI standards for payment processing when designing our application. This set of guiding principles ensures that payments systems are secure and are required if you want to conduct transactions using large companies products such as Visa and Mastercard.
+
+  Tying into this, if we are planning save user credit card information (if they elect to do so), this is very sensitive security area. Steps should be taken to ensure all data is encrypted and saved to the database in a way that cannot be easily accessed by developers or attackers.
+
+  User sessions will also have the be considered. As this is a marketplace, presumably users will be able to log-in in order to post things they wish to sell or log in in order to purchase items. This means a session token will be used. Because of this we will need to consider how we protect these session tokens from being discovered by attackers, which would allow them to totally skip a log-in and "impersonate" a user using their token. 
+
+  Lastly, as a marketplace app where people can by and sell items, there needs to be some kind of monitoring around what is being sold. If the marketplace is for a particular kind of product, how are we going to ensure those are the products that are being sold. Additionally, how do we stop users from selling illegal items and filter out scammers.
+
   <details>
     <summary>Resources</summary>
-    https://www.proserveit.com/blog/information-security-requirements
     https://hackr.io/blog/mobile-app-security-standards-checklist
+
+    https://www.lrswebsolutions.com/Blog/Posts/32/Learn-More/2018/11/11-Best-Practices-for-Developing-Secure-Web-Applications/blog-post/
+    https://www.rsisecurity.com/compliance-advisory-services/pci/
+    https://martinfowler.com/articles/web-security-basics.html
   </details>
 </details>
 
@@ -149,9 +184,43 @@
 <details>
 <summary></summary>
 <br>
+
+* **Common Methods for protecting information**
+  
+  I will address the points I made in questions 6 in this question and talk about methods for actually implementing the security relevant to this marketplace application.
+
+  Taking information from a user and storing it in a database creates several security concerns.
+
+  There is potential for SQL injection through a HTML form. The first line of defence here is using Rails validators. Rails validators allow us, in Ruby, to validate an input taken from a submitted form. The upshot of this approach is that the input can be checked before it hits a database or is potentially returned to a HTML/CSS/JS rendering browser. In this way we can safely handle potentially dangerous strings and reject them before they end up at their target destination in the framework. 
+
+  Its worth pointing out that if input doesnt pass validation, we want to reject that input and not render it back to the HTML document, as the string itself could be designed to target the front end encoding of the web application.
+
+  Validation will be extremely important for our marketplace application, as users will often be interacting with different forms in order to create accounts, sell items, buy items and search for items. Using html elements to ensure the correct type of input is used for each field is one step that should be taken. Additionally, server side validation should take place in order reject or filter out any unwanted inputs. This can be done with rails using strong parameters, permitting only the required fields. This also has the upshot of instrinsically parameter binding our permitted parameters to make SQL injection almost impossible. Parameter binding is simply assigning the parameters to variables, then passing those variables to the SQL statement, rather than directly interpolating the potentially malicious strings into the statement.
+  
+  We can also control what hits the database by using validation in our models thanks to the Rails validate feature. With this we gain even further control over what hits our database in the first place. A form input that does not pass model validation will never interact with the database.
+
+  Moving on, we can look at how we will protect the users data once it is in the actual database. It would be a breach of security and privacy if a developer could simply interact with the back-end of the site and pull sensitive information, such as emails, passwords, addresses, phone numbers and any other personal information. 
+
+  The first step is to ensure that the web application will have an SSL certificate when it is deployed. This will ensure that information sent between the client and server is secure, encrypted and unable to be intercepted by an attacker "listening in". Rails provides easy options for making production web applications use https (SSL compliant connections) by default.
+
+  The next step is to ensure that the information is encrypted when it is stored in the database. 
+
+  Many 3rd party databases provide standing encryption. That is, the whole database is encrypted by default. However, this doesn't provide protection if an attacker gets hold of the database and is able to access it directly. The database will simply unencrypt and serve up whatever is requested.
+
+  The way we can address this issue is by using application level encryption. This is where we encrypt the information before it hits the database, so if an attacker were to pull gain access to the database, they would simply get encrypted responses. There are a few ways to do this, and there's a many Ruby gems that allow us to easily encrypt and decrypt without directly interacting with the keys in a way that would compromise privacy. Making an educated decision about this should be a point of discussion during development. 
+
+  Related to encryption and data transfer, ensuring transactions are safe and secure will be a big part of this application. An easier way to approach this is to use a third party payment processing service, such as stripe or paypal. This would require a secure redirect and return to and from the third party processer. Given the resources needed to ensure that payments and payment details are not compromised or intercepted, it would be worth weighing the requirements and cost of having a PCI compliant system if one is not already in place with the cost of using a third party provider.
+
+  If PCI compliance is the goal, then heavy reference to the documentation will be needed to ensure that the overall system is safe from being compromised. This looks like ensuring that the system is firewalled properly from any external source, and from internal sources also. SSL is an absolute must in this case as users will be sending credit card details between their client and your server. Encryption of these details if they are being stored is also mandatory. Regular testing and updating must also be a part of the strategy, as risks change and the system ages. 
+
+
+
   <details>
     <summary>Resources</summary>
-    
+    https://martinfowler.com/articles/web-security-basics.html
+    https://ankane.org/sensitive-data-rails 
+    https://www.netsparker.com/blog/web-security/definitive-pci-dss-compliance-guide-web-application-security/
+    https://guides.rubyonrails.org/security.html
   </details>
 </details>
 
@@ -164,6 +233,10 @@
     https://gbksoft.com/blog/legal-pitfalls-of-app-development/
     https://legal123.com.au/how-to-guide/how-to-develop-an-app-infographic/
     https://www.oaic.gov.au/privacy/guidance-and-advice/mobile-privacy-a-better-practice-guide-for-mobile-app-developers/
+
+    https://www.oaic.gov.au/privacy/the-privacy-act/rights-and-responsibilities/
+    https://www.business.gov.au/Risk-management/Cyber-security/How-to-protect-your-customers-information
+    https://www.oaic.gov.au/privacy/australian-privacy-principles
 
     #### [Sources]---
 1. [Privacy Law in Australia | Go To Court Lawyers](https://www.youtube.com/watch?v=MQc-UjE560A)
