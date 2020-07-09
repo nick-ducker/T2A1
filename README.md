@@ -213,7 +213,15 @@
 
   If PCI compliance is the goal, then heavy reference to the documentation will be needed to ensure that the overall system is safe from being compromised. This looks like ensuring that the system is firewalled properly from any external source, and from internal sources also. SSL is an absolute must in this case as users will be sending credit card details between their client and your server. Encryption of these details if they are being stored is also mandatory. Regular testing and updating must also be a part of the strategy, as risks change and the system ages. 
 
+  A marketplace app is likely to use session cookies in order to store the user state on a clients browser. This allows us easier way to create things like Cart funtionality and negates the need to reauthorise the user every time they visit a new page. However, this does create a security concern. These session cookies, if discovered by an attacker can lead to the session being "hijacked", with the attacker impersonating a valid users browser. 
 
+  Having an SSL certificate and forcing the application to use HTTPS is a good start on how to keep attackers from intercepting a session token. Rails also has some great inbuilt security features for ensuring session fixation is impossible, such as resetting the session_id after each successful login. The Devise gem, a popular Rails gem for user login and management, incorporates many of these features by default. 
+
+  It should be said that cookies should not be used by our marketplace application to store any sensitive data or "permanent" data. Session cookies are temporary in nature, and anything stored in them should also be fit the bill as temporary. 
+
+  Lastly, the content on the marketplace should be monitored. A user should not be able to sell illegal goods through your marketplace and steps should be taken to try and identify and take down potential scams. This can be done using a web crawler that will alert an admin, or better yet, automate the process of removing potentially illegal content from the web application. 
+
+  This should go hand in hand with a user policy, that if violated, will end up with the user being banned from the platform. Additionally, steps should be taken to increase awareness of other users around scams and ensuring they have some degree of trust in the seller. This can be potentially be acheived through a vouching system, where sellers with a good track record will get a rating, etc. Going hand in hand with this awareness, allowing users to report suspicious or illegal content can help fill in the gaps of a webcrawler, which might miss a more nuanced attempt at selling illegal products.  
 
   <details>
     <summary>Resources</summary>
@@ -221,6 +229,7 @@
     https://ankane.org/sensitive-data-rails 
     https://www.netsparker.com/blog/web-security/definitive-pci-dss-compliance-guide-web-application-security/
     https://guides.rubyonrails.org/security.html
+    https://evercompliant.com/fraud-prevention-tool-box-content-monitoring-on-steroids/
   </details>
 </details>
 
@@ -228,8 +237,37 @@
 <details>
 <summary></summary>
 <br>
+
+* **Legal Obligations**
+
+  The first step in determining what the legal obligations are is determining whether ACME corp is required to comply with the Privacy Act. If the business turns over more than three million dollars a year, then they are required by Australian law to comply.
+
+  It should be pointed out that even if ACME doesn't fall within this requirement for compliance, following the principals anyway would be a good idea to protect from other unlawful breaches of privacy and gain user trust.
+
+  The Australian government has laid out the Australian Privacy Principles (APP) for aiding businesses in knowing what their obligations are under law. There are 13 principles in all.
+    1. APP compliant Privacy Policy.
+      The company must make available to users a privacy policy that contains information regarding their person information. The policy should contain:
+        * What kind of information is stored and why.  
+        * How someone can access their personal information and change it.
+        * How to lodge a complaint.
+        * Information around how the business will use the information and whether it will be disclosed to other entities.
+
+    2. A user should be able to be anonymous or use a pseudonym in place of anything that could be potentially identifying
+    3. The company should not store or collect personal information that is not required for functionality of the application.
+    4. The company should have a policy for dealing with personal information that is voluntarily given. For example, if information is given to the company without any collection on the companies part, and that information is not publically available, the information should be destroyed.
+    5. The company must notify the user that they are collecting personal information at the time of collection and inform them for what purpose. 
+    6. The company must tell the user under what circumstances that it would disclose the personal information of the user to an external entity.
+    7. The company must not disclose user information for direct marketing purposes unless that is what is expected of the company.
+    8. The company should ensure that any overseas recipient of user information falls in line with the APP principles also.
+    9. The company should not identify itself as government affiliated in anyway, unless it is.
+    10. The company should ensure that the user information is up do date and complete.
+    11. The company must take precautionary steps to make sure the data is protected and cannot be maliciously accessed. 
+    12. The company must provide the personal information to and user who requests it.
+    13. The company must request the user to update their information if they beleive it is inaccurate or out of date.
+
   <details>
     <summary>Resources</summary>
+
     https://gbksoft.com/blog/legal-pitfalls-of-app-development/
     https://legal123.com.au/how-to-guide/how-to-develop-an-app-infographic/
     https://www.oaic.gov.au/privacy/guidance-and-advice/mobile-privacy-a-better-practice-guide-for-mobile-app-developers/
@@ -237,13 +275,6 @@
     https://www.oaic.gov.au/privacy/the-privacy-act/rights-and-responsibilities/
     https://www.business.gov.au/Risk-management/Cyber-security/How-to-protect-your-customers-information
     https://www.oaic.gov.au/privacy/australian-privacy-principles
-
-    #### [Sources]---
-1. [Privacy Law in Australia | Go To Court Lawyers](https://www.youtube.com/watch?v=MQc-UjE560A)
-2. [Privacy and data protection | How to engage in cyber policy](https://www.youtube.com/watch?v=ZNEPaGFApX4)
-3. [Data protection and privacy in Australia | McCullough Robertson](https://www.lexology.com/library/detail.aspx?g=7598b614-4431-4429-9897-c83e40682865#:~:text=There%20is%20no%20such%20requirement,which%20the%20information%20was%20collected.)
-4. [Australian Privacy Principles | Australian Government](https://www.oaic.gov.au/privacy/australian-privacy-principles/)
-
   </details>
 </details>
 
@@ -251,26 +282,66 @@
 <details>
 <summary></summary>
 <br>
+
+* **Relational Database Structure**
+  
+  A relational database structure is based on "tables". Each of these tables within the database has a unique name, generally specifying its purpose. The table itself contains columns which generally specify the name of the data that is being held there. For example, a "user" table may have a column for name, email, age etc. These are essentially keys to the data that is contained within the table. 
+
+  Its also worth mentioning that in a relational database, all tables will have a primary key, which is a way of identifying each individual entry on a table.
+
+  Once the columns of a named table are defined, we add data to the table in the form of rows. Everytime a new row is added, it is assigned a unique primary key and then the rest of the now created cells are now filled out accordingly. 
+
+  These columns can also reference foreign primary keys, and the database will know which table to look to for the primary key. For example, if a "post" table had a foreign "user_id" key, it would know to look at the user table in order to locate that primary key.
+
+  This is a key part of relational database structure, as the structure itself assumes that data that is stored will relate specifically back to something in particular. 
   <details>
     <summary>Resources</summary>
+    https://www.relationaldbdesign.com/database-design/module2/intro-relational-database-structure.php
   </details>
 </details>
 
-## Q
+## Q10
 <details>
 <summary></summary>
 <br>
+
+* **Relational Database Integrity**
+
+  Relational databases creates integrity in the way it stores information intrinsically by providing each stored peice of information with its own primary key. When this happens it makes sure that there is no duplicate data within the database. You could create a table and fill out the columns identically for every entry, but the primary key will always be different.
+
+  This also creates integrity around the relationships within that database. Using foreign keys, a database table will know exactly where and what to look for at all times. 
+
+  Relational databases also require specification of the data type being entered, and this can be further improved upon using application level validation to ensure that the data that is expected in each column is indeed correct.
   <details>
     <summary>Resources</summary>
+    https://www.talend.com/resources/what-is-data-integrity/
   </details>
 </details>
 
-## Q
+## Q11
 <details>
 <summary></summary>
 <br>
+
+* **Relational Database Manipulation**
+  Relational databases generally use Structured Query Language in order to store and manipulate information.
+
+  This language allows us to essentially perform relational algebra on a data base in order to select or add the information we want to it without getting bogged down int mathematical terminology.
+
+  This allows applications and developers to use powerful statements to not just search through databases, but also to insert and delete information from these databases using fairly semantic inputs. 
+  SQL itself is built around the relational database model, so its statements are structured to comply to the relational nature of the database.
+
+  For example, if we wanted to insert information into a table named "users", and the fields we want to complete are "name" and "email", we could use the following SQL statement:
+  ```INSERT INTO users (name, email) VALUES ('Sam', 'sam@sam.com');```
+  This statement highlights the nature of manipulation in the database. To further highlight this, we could recall the entire row of data using a statement such as:
+  ```SELECT * FROM users WHERE email = "sam@sam.com";```
+  This would return all columns from all entries where email matches the query string. 
+
+  Relational databases also intrisically look through tables that are referenced 
+
   <details>
     <summary>Resources</summary>
+    https://en.wikipedia.org/wiki/Data_manipulation_language
   </details>
 </details>
 
