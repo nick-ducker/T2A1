@@ -345,19 +345,171 @@
   </details>
 </details>
 
-## Q
+## Q12
 <details>
 <summary></summary>
 <br>
+
+* **Sorting Algorithms**
+
+  * Selection Sort
+    A selection sorting algorithm is a simple sorting algorithm used to sort an array in ascending order.
+
+    The basic idea behind a selection sort algorithm is that it will iterate through an array and select the lowest number from the array and place that into a sorted array.
+    It will continue to do this until all numbers have been sorted in order into the new array.
+
+    This can be done by creating a brand new array, or partitioning the array in-situ and swapping variables. 
+
+    I will describe the in-situ variant.
+
+    We start by selecting the first element of the array. I will call this the sorting index. This intrinsically also becomes our current minimum.
+    Next we look at the following element. If this element is smaller than the current minimum, it becomes our new minimum. 
+    We then evaluate the following element and do the same process, moving our current minimum when a smaller value is encountered.
+
+    When we reach the end of our array, we swap the current minimum with the sorting index.
+    We now consider the number that has been swapped into the sorting index as part of the sorted partition. As we go on, we will have the sorted partition left of the sorting index and the unsorted partition to the right. 
+
+    We continue this process until the algorithm iterates through the entire array.
+
+    Below I have included a code example of this algorithm in Ruby.
+
+    ```ruby
+    def selection_sort(array)
+      # First we create a variable to store which position we are swapping
+      sorting_position = 0
+
+      # We create a loop that runs as many times as the size of the array in order to swap every element
+      array.size.times do
+        
+        # We set the current minimum to the position we're sorting from
+        current_minimum = sorting_position
+        # We set the current item to the position one ahead of of the current minimum
+        current_item = sorting_position + 1
+
+        # We nest a loop to iterate through the unsorted part of our array 
+        (array.size - (sorting_position + 1)).times do
+      
+          # We compare our current minimum with our current item
+          if array[current_minimum] > array[current_item]
+            #If the current minimum is larger than the current item, we set the position var to the current item position var
+            current_minimum = current_item
+            #We then increment the current item position var by one
+            current_item += 1
+          else 
+            #if the current minimum is smaller than the current item, we increment the current item position var by one
+            current_item += 1       
+          end
+        end
+
+        # We then swap the position of the value at the sorting position with the value at the current minimum position 
+        sorting_position_value = array[sorting_position]
+        array[sorting_position] = array[current_minimum]
+        array[current_minimum] = sorting_position_value
+
+        # We then increment our sorting position by one to create our sorted partition of the array
+        sorting_position += 1
+
+        #The loop then continues until is has sorted all the elements into the sorted partition
+      end
+
+      return array
+    end
+    ```
+
+    * Counting Sort
+      The counting sort is interesting in that it can perform faster than most sorting methods if the right conditions are present. It should be noted that the counting sort is only an option for arrays of integers.
+
+      The speed counting sort relies on two integral things. The range of an array must be known and the range should not be drastically larger than the number of elements in the array. For example, a 5 element array with a range of 1 to 10,000 will run much slower than an 100 element array with an range of 100.
+
+      The basic premise behind a counting sort is that it creates another array (or hash) that is responsible for counting the number of times a particular value appears in an array. 
+      First we create an array or hash with the same range as the array to be sorted. For this example I will use a hash.
+
+      We then iterate over the array to be sorted and increment the count on each corresponding hash key by one until we reach the end of the input array. 
+      We now have a hash of integer keys that point to the amount of times they occur in the input array.
+
+      Now we can iterate through our counting hash and input the key into a new hash corresponding to the value. For example, if the key "3" has a value of 7, we would push 3 onto the new array 7 times. We continue doing this until we reach the end of our counting hash.
+
+      We now have a new array with the sorted values of the old array. 
+
+      There are many different ways to do this that are more space effecient and use only two arrays rather than an array and a hash.
+
+      ```ruby
+        def counting_sort(arr,range)
+        #We generate a hash with with keys that correspond to every number within the arrays predetermined range, all pointing to zero.
+        setup = *(1..range)
+        count = Hash[setup.collect { |value| [value, 0] }]
+        #We then generate a new array to push our counted hash into later
+        finalarr = Array.new
+
+        #We iterate through the array and increment the count on the hash where there is a matching key
+        arr.each do |element|
+          count[element] += 1
+        end
+
+        #We then iterate through the hash and look for keys with values more than zero 
+        count.each do |key, value|
+          if value > 0
+            #if a key has a value more than zero, we push that key to the new array as many times as the value states.
+            value.times do
+              finalarr << key
+            end
+            
+          else
+            #Otherwise, we move onto the next key
+            next
+          end
+        end
+
+        return finalarr
+      end
+      ``` 
+
+
+    In terms of Big-O notation, we can see that the selection sort method uses two loops to acheive the desired output, one nested inside of another.
+
+    If there was only one loop, then the complexity would grow linearly. This basically means if we asked a program to iterate over an array of 10 elements, it would take 10 times the amount of time to do the same operation over a list of 100 elements. We can say that the complexity of the method grows linearly with the amount of data points given to it. This is expressed as O(n).
+
+    But, as previously mentioned, the above method uses a nested loop. In this particular example the program will have to iterate over the array, eg O(n), but within that iteration, another iteration occurs, eg another O(n). This gives us O(n2), or the square of N is now the complexity. So to use our previous example, an array of 10 elements is no longer O(10), but O(10*10). Now our array of 10 elements takes as much time to process as our array of 100 elements, and our array of 100 elements takes 100 times longer than it did previously.
+
+    As we can see, these numbers grow quite quickly with larger datasets.
+
+    The counting sort provides an interesting example of Big-O notation. 
+    Technically, the complexity of the counting sort above is O(n). However, the size of this N value is dependant on the size of the range of the array to be sorted.
+
+    We can express this more clearly by writing O(n + k), where n is the size of the input array and k is the size of the range. While this complexity is linear, if we had a very large range, like 10,000, and a small array, like 5, we're iterating through a large number of keys in a hash for only a small amount of elements to sort. 
+
+    Within the above example it should also be noted that there is technically a nested loop that executes everytime a value more than 0 is found in the count hash. This does not add to the Big-O complexity however, as this times loop will only ever execute as many times as the input array is large, instead of fully looping through the input array each time it is called. It therefore does not make the notation O(n2)
+
+    Where the counting sort really shines is where we know the range will be close to, or less than the size of the array to be sorted.
+
+    To comparing these methods is a matter of context. If we have an array where the range of the integers to be sorted is known and close to or less than the number of elements in the array, the counting sort is superior.
+
+    for example:
+    Array Size = 50, Range = 70  
+      => Counting Sort = O(120)
+      => Selection Sort = O(2500)
+
+    Array Size = 50, Range = 5,000
+      => Counting Sort = O(5,050)
+      => Selection Sort = O(2500)
+
+      We can see here, according to context, that the counting sort works better situationally, with integers and when the range is known.
+  
   <details>
     <summary>Resources</summary>
+    https://gist.github.com/brianstorti/953310
+    https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+    https://medium.com/basecs/counting-linearly-with-counting-sort-cd8516ae09b3
   </details>
 </details>
 
-## Q
+## Q13
 <details>
 <summary></summary>
 <br>
+
+* **Search Algorithms**
+  * Linear search
   <details>
     <summary>Resources</summary>
   </details>
