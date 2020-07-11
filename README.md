@@ -510,12 +510,83 @@
 
 * **Search Algorithms**
   * Linear search
+    A linear seach is as simple as a search algorithm can get.
+    A linear search will take a sorted or unsorted array and a value that it is looking for. It will then iterate over the array and compare the value its looking for with each value in the array. 
+    
+    ```ruby
+      def linear_search(array, find)
+      # We iterate through each element of the array
+      array.each do |element|
+        # We compare each element to the value we're looking for
+        if element == find
+          return "#{element} found"
+        # If it doesn't exist, we move onto the next element
+        else
+          next
+        end
+      end
+      # If the element is not found after a complete iteration over the array, we return nil.
+      return "#{find} not found"
+      end
+    ```
+
+    This extremely simple approach is not complicated and has a fairly low completixty, but even at this complexity, very large datasets can take a long time to iterate through large datasets. This is where we can use a binary search in the right context to make the search faster.
+
+  * Binary search
+
+    Binary searches are a faster way of performing a search for a specific index over a large dataset. The one catch to a binary search is that it must be performed on a sorted dataset.
+
+    The basic functioning behind a binary search is that it will take a sorted array, then look at the midpoint of that array and see if it matches the value that we're trying to find. If the element at the mid index is higher than the value we're searching for, we throw away the top half of the array, if it's lower, then we throw away the bottom half.
+
+    With this new array, we then repeat the process, looking at the midpoint, checking if it matches, and discarding the upper or lower half of the array accordingly.
+    This process continues until we find the value we're looking for, or reach an array of 1 element that does not match, in which case the value we're looking for does not exist within the array.
+
+    ```ruby
+      #We set default values for the minimum index and max index
+      def binary_search(sorted_array, find, min=0, max=sorted_array.size-1)
+
+        #We create a midpoint var to help us point to the middle of the array as defined by the min and max index pointers.
+        midpoint = (min + max) / 2
+
+        #We use a spaceship operator to compare the midpoint element with the value we wish to find
+        case sorted_array[midpoint] <=> find
+        when 0
+          #We return that the element has been found
+          return "The element is at index #{midpoint}"
+        when -1
+          #We check if there is only one element left in the array and halt the method if so
+          return "Element not present" if (min - max) == 0
+          #Otherwise, we set our minimum index to 1 above the midpoint
+          min = midpoint + 1
+          #We the recursively call the method on itself with the updated min index
+          binary_search(sorted_array, find, min, max)
+        when 1
+          #We check if there is only one element left in the array and halt the method if so
+          return "Element not present" if (min + max) == 1
+          #Otherwise, we set our maximum index to 1 below the midpoint
+          max = midpoint - 1
+          #We then recursively call the method on itself with the updated max index
+          binary_search(sorted_array, find, min, max)
+        end
+      end
+    ```
+
+    In terms of Big-O notation, both of these search methods are relatively low complexity, especially when contrasted with the sorting algorithms. However there are differences between the two search methods desribed above.
+
+    The linear search has a Big-O complexity of O(n), so the complexity increases linearly with the number of elements given to it. It will take 100 times longer to iterate over 1,000 elements as it would 10. As we can see, this is fine up to a point, but if we're working with large datasets this can become an issue.
+
+    This is where the binary search can shine. As long as the array is sorted then the binary search has a complexity of O(log n). log n is basically the opposite to exponential growth. Exponential means that with every operation our workload increases by double or more. Logarithmic is the opposite, meaning our workload will be at least halved on each operation. Looking at the code above, we can see that the binary search function quite literally halves our array each time it performs our method. This results in a logarithmic runtime, and can be easily visualised as a curve on a graph that starts steep, then flattens out as time goes on. 
+
+    With large datasets, this can be powerful. If we have a dataset of 10,000 datapoints, and we double this to 20,000, a O(log n) function like a binary search will only take one extra operation to reach the same complexity as the same method run with 10,000 datapoints. Very cool. 
+
   <details>
     <summary>Resources</summary>
+    https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+    https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702
   </details>
 </details>
 
-## Q
+## Q14
 <details>
 <summary></summary>
 <br>
