@@ -590,7 +590,59 @@
 <details>
 <summary></summary>
 <br>
+  ### Airbnb
+  1. **Describe the software used by the app**
+    Airbnb uses a huge range of software to deliver its two sided marketplace. I will touch on the biggest and most relevant peices of its software stack:
+     * Ruby on Rails: The base framework that Airbnb is built on is Ruby on Rails. Rails is written and operates in Ruby. However, Rails simply handles the backend for airbnb, whereas the front end is handled by React, described below.
+     * React: React is a popular javascript framework used mainly for front end design. This framework is built on the Javascript language. In this case, combining React with Rails gives Airbnb the flexibility in front end design that React caters for, while maintaining a Rails backend.
+     * Nginx: Nginx is a webserver specifically designed to be scalable and flexible under high loads. This webserver is what handles all the http requests of browsers trying to connect to parts of the web application and interacts with the app in order to deliver the desired content.
+     * Redis: Redis is, simply put, a non-relational "caching" database. Redis acts as a temporary place of storage for simple kinds of data. It's purpose is to reduce the amount of calls made to the main database by temporarily holding onto data called from the database, therefore improving speed and potentially decreasing cost.
+     *  Amazon S3: The Amazon S3 database is used to store images and media for the airbnb site.
+     *  Amazon EC2: The Amazon EC2 acts as a cloud host that can respond to the demand of Airbnb traffic. It also means that if Airbnb goes down somewhere, EC2 can take on the extra workload while the problem is fixed.
+     *  Amazon RDS: The Amazon RDS acts as the main and centralised relational database for the Airbnb app.
+     *  Hadoop: Hadoop is a software tool that "splits up" the work of making database queries over more than one computer. Simply put, if one computer makes one large request to the database, the database must send back all of that data to the same computer. But if several computers make smaller requests to the database, the database can deliver all these parts simultaneously to different computers, which then reduce these smaller parts into one larger part, resulting in a faster, more effecient request. 
+     *  Airflow: Airflow is a simple tool that allows tasks to be run in order of operations, automatically. Say for example, you wanted to generate an email, but needed to collect a bunch of data in order to do this properly, and the email itself may look different depending on the state of whatever you're checking it against. Airflow can move through the application and peice these things together once the workflow has been designed for it. 
+     *  Druid: Druid acts as a big data sythesizer, that can listen in on events of the app and aggregate these into statistics. These numbers can be used hand in hand with creating user interfaces relating to these values.
+     *  Twilio SendGrid: Twilio is an API used for sending emails to users.
+     *  Braintree: Braintree is a online payment processor, like Stripe, that allows apps to take payments securely. 
+
+  2. **Describe the hardware used to host the app**
+     The entirety of Airbnb's physical hosting is done through Amazon EC2 server hosting. This means the physical hosting of the application is all done via the cloud and is entirely scalable to the needs of Airbnb at any given time. When there is more demand for the application, EC2 simply responds by using more server to handle the load. When the load decreases, those servers stop hosting.
+     
+     Airbnb also uses Amazon S3 and RDS for its data hosting, which again, allows it to scale its cloud based hardware with its needs.        
+
+     The huge upshot of using a cloud based system is that it cuts out a huge amount of work for a company if they don't have to worry about storing and maintaining servers. The downside here is that as the application grows and demands more resources, the cost of these resources intrinsically increases.
+  
+  3. **Describe the interaction of technologies within the app** 
+    Ruby on Rails acts as the base framework for the airbnb application. This handles all the back end processing of the application. The is intergrated with React in order to create a complex front end that is able to dynamically render content depending on the browser state. All of this is served through the Nginx webserver which handles the connections and requests from browsers asking for data from the application. When a request is made to the application through the webserver and a database query needs to be made, this is done through an interplay of a few different technologies. For images, the application will query the S3 database, which is responsible for cloud storage of media. For other database queries, the application will interrogate the RDS, Amazons relational SQL database, using Hadoop, to split the requests over multiple ports of call and then reduce them into the final data object, to complete the request faster. At this stage, what can be cached in Redis, which is reponsible for temporarily holding onto specific data types in a non-relational way, will be cached, so less successive database queries need to be made if the browser returns to an old page, or a new page requires the same data as a previous one. Running in parallel with all of this are a few technologies also. Airflow, responsible for workflow automation, will be working in the background, automating tasks that must be done according to a workflow, such as email, which is then handled by the Twilio SendGrid API. Druid is also listening in to the events on the application and presumably having that data synthesized meaningfully elsewhere. Braintree is the payment processor that steps in when a payment action is required on the site. 
+
+    This is all hosted and scaled on AWS services, which look after the maintenance and scaling of the application, leaving the application team to solely focus on the interplay of the apps technologies without worrying about the size or speed limitations of the hardware needed.
+
+  4. **Describe the way data is structured within the app**
+    Airbnb is a two way marketplace, which means its data structure will generally conform to a few concepts. In a two way marketplace, there are two users, one is a buyer and one is a seller. These users can be fundamentally differentiated in how they are regarded as data, or every user can be both. In the case of Airbnb, every user can be both a buyer and a seller.
+
+    A point of user data will generally hold on to all the details unique and specific to that user, as well as pointing to anything that may relate to that user, whether it be places they're hosting from, experiences they're delivering or simply favorites they've saved to look at later.
+
+    A marketplace generally has some kind of product that is being sold by users. In the case of airbnb, there are two fundamental products that the application caters to; accommodation and experiences. Users can both create and sell these things as well as buy/book these things from other users.
+
+    Both of these points of data would hold on to a bit of data unique to themselves, like name and description, while potentially pointing to other things such as reviews, category, amenities, features and ratings which may exist over more than one place of experience.
+
+    In order to handle the actual booking of these places/experiences, there would also need to be a data structure that handles the booking that can be referred to for the seller, the buyer and others interested in the product.
+
+    Reviews would be a part of the data structure also, and can be associated with any of the above parts of the structure depending on the context. For example, a review might be a user review, or an experience review, etc. 
+
+    The inbuilt messaging tool also is a part of the data structure that needs to be considered. Users can have multiple conversations with unique messages in each that are attributed to a unique user.
+
+  5. 
   <details>
     <summary>Resources</summary>
+    https://www.airbnb.com.au
+    https://stackshare.io/companies/airbnb
+    https://www.forbes.com/sites/quora/2018/02/20/what-technology-stack-does-airbnb-use/#286998c64025
+    https://www.nginx.com/resources/wiki/
+    https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-1-what-is-redis/
+    https://www.youtube.com/watch?v=9s-vSeWej1U
+    https://www.youtube.com/watch?v=xQBNn67rL_o
+
   </details>
 </details>
