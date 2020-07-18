@@ -94,23 +94,26 @@
 <br>
 
 * **Standard Source Control Workflow**
+
+
   The goal of implementing an effective source control workflow is to mitigate the difficulty and risk in working on a codebase. 
 
   Developers will often have to work on portions of the same code-base simultaneously. Issues can arise when one developer unknowingly overwrites another developers code, or two developers work on separate version of the software but cannot make them compatible. 
 
   Using services, such as Git and Mercurial, developers now have a lot more flexibility in how they approach these sorts of issues.
 
-  A common strategy is to develop features using branches. Branches allow developers to create a "copy" of the trunk that they can work on independent to the main codebase. It should be noted that one of the advantages of using Git, is that when a project is branched, the code-base is not actually copied in its entirety. Git essentially uses "pointers" to keep track of what and what does not exist in a codebase at any point in time.
+  A common strategy is to develop features using branches. Branches allow developers to create a "copy" of the trunk that they can work on independent to the main codebase. It should be noted that one of the advantages of using Git, is that when a project is branched, the codebase is not actually copied in its entirety. Git essentially uses "pointers" to keep track of what and what does not exist in a codebase at any point in time.
   
   Usually a branch is created for each new feature or bugfix, worked on and then merged back into the trunk when it is ready. Developers can then evaluates the differences between the trunk and the branch if the trunk has changed since the initial branch before the final merge.
 
   The upshot of this workflow is it's easier to keep the trunk version of the software stable and ready for release if it's not deployed already. This also makes it much easier to isolate the changes that happen to the trunk branch through the branches that were worked on. 
 
-  A downside to this approach is that it can make testing more difficult if a developer branches a copy of the trunk, and then the trunk is further modified or added two after the branch has been created. This increases the likelihood of bugs once the branch is merged back into the trunk and increases the amount of time it takes to review the merge before it's committed.
+  A downside to this approach is that it can make testing more difficult if a developer branches a copy of the trunk, and then the trunk is further modified or added to after the branch has been created. This increases the likelihood of bugs once the branch is merged back into the trunk and increases the amount of time it takes to review the merge before it's committed.
   <details>
     <summary>Resources</summary>
-    https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops
-    https://dev.to/fpolster/how-to-work-with-git-an-overview-of-git-workflows-1icb
+
+    *  https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops
+    *  https://dev.to/fpolster/how-to-work-with-git-an-overview-of-git-workflows-1icb
   </details>
 </details>
 
