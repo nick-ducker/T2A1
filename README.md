@@ -52,7 +52,7 @@
     * There are not as many tools available to aid with the management of a PostgreSQL database.  
   <details>
     <summary>Resources</summary>
-    
+
     *  https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems
   </details>
 </details>
@@ -63,6 +63,7 @@
 <br>
 
 * **Agile Development**
+  
   In understanding how to implement an Agile development methodology, first we need to understand the difference between an agile methodology and the Agile "philosophy" as a whole.
 
   The Agile development philosophy outlines broad ways of thinking about our projects and managing them. This is different to Agile methodologies, that build onto this principle and practical strategies for actually doing work in an Agile way.
@@ -71,16 +72,17 @@
 
   1. Start with a strategy meeting. The idea behind this meeting is to layout the big picture and figure out what the core values of the project/product will be. Additionally this is the point where there needs to be buy-in from all levels of the project, from client to management. 
 
- 2. The next stage is to plan out the product backlog. This will be the "master" pool of work to get done which is consistently created and updated in conjunction with the client. The idea here is to plan out/update the goals for the project, rather than the specific features, and identify measurable ways of achieving said goals. This promotes a more agile mindset as it moves away from planning absolutely everything before the work begins and allows for flexibility in meeting the goal. 
+  2. The next stage is to plan out the product backlog. This will be the "master" pool of work to get done which is consistently created and updated in conjunction with the client. The idea here is to plan out/update the goals for the project, rather than the specific features, and identify measurable ways of achieving said goals. This promotes a more agile mindset as it moves away from planning absolutely everything before the work begins and allows for flexibility in meeting the goal. 
 
-3. And just before the work begins, just like the product backlog, it can be worth thinking about what the release timeline will look like. This means deciding what you MVP will look like and where you want to take it from there on a loose "release by release" basis. 
+  3. And just before the work begins, just like the product backlog, it can be worth thinking about what the release timeline will look like. This means deciding what you MVP will look like and where you want to take it from there on a loose "release by release" basis. 
 
-4. At this stage, it's time to sprint. A sprint is a period of time, between 2-4 weeks usually, where the team will actually try to implement some of the items in the product backlog by moving them into a spring backlog. Generally speaking, when the sprint has started, the team will work towards those goals and revise once the sprint has been completed. The sprint length will usually stay the same length for the duration of the project also. Towards the end of a sprint, the team will do a review and then retrospective. The review is meant to be an evaluation of what has been done during the sprint, what seems like the next step and the product owner ultimately deciding if that iteration of the project will be released. The retrospective is more of an evaluation of the effectiveness of the sprint as a whole, looking at what worked well and what can be improved. It should also be mentioned that during this time their is consistent liaison between the developers and the client, in order to make sure their staying on target. 
+  4. At this stage, it's time to sprint. A sprint is a period of time, between 2-4 weeks usually, where the team will actually try to implement some of the items in the product backlog by moving them into a spring backlog. Generally speaking, when the sprint has started, the team will work towards those goals and revise once the sprint has been completed. The sprint length will usually stay the same length for the duration of the project also. Towards the end of a sprint, the team will do a review and then a retrospective. The review is meant to be an evaluation of what has been done during the sprint, what seems like the next step and the product owner ultimately deciding if that iteration of the project will be released. The retrospective is more of an evaluation of the effectiveness of the sprint as a whole, looking at what worked well and what can be improved. It should also be mentioned that during this time their is consistent liaison between the developers and the client, in order to make sure their staying on target. 
 
-5. The team begins another sprint, creates another sprint backlog and the cycle begins again. This will continue until the end of the project of the needs of the project change. This could look like the final release of a product, or a massive change in product direction.
+  5. The team begins another sprint, creates another sprint backlog and the cycle begins again. This will continue until the end of the project of the needs of the project change. This could look like the final release of a product, or a massive change in product direction.
   <details>
     <summary>Resources</summary>
-    https://plan.io/blog/ultimate-guide-to-implementing-agile-project-management-and-scrum/
+
+    *  https://plan.io/blog/ultimate-guide-to-implementing-agile-project-management-and-scrum/
     https://www.atlassian.com/agile/scrum
 
   </details>
