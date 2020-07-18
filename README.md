@@ -6,20 +6,20 @@
 <summary></summary>
 <br>
 
-* **Typical Rails Architecture**
-  The typical Ruby on Rails web application is based on the Model, View, Controller (MVC) architecture. This architecture splits up the code of an app into three distinct parts, each responsible for their specific role in the apps functionality. 
+  * **Typical Rails Architecture**
+ The typical Ruby on Rails web application is based on the Model, View, Controller (MVC) architecture. This architecture splits up the code of an app into three distinct part s, each responsible for their specific role in the apps functionality. 
 
-  IMG
+  IMG
 
-  When a web browser makes a request to a Rails application, first the web server will check if what has been requested is publically and locally available. If it is, this is then returned without having to delve into the Rails application. An example of this would be a 404 page.
+  When a web browser makes a request to a Rails application, first the web server will check if what has been requested is publicly and locally available. If it is, this is then returned without having to delve into the Rails application. An example of this would be a 404 page.
 
-  However, if the request cannot be completed by the web server, it will then hit the Rails router, which will then call on the corresponding controller action for the request. The controller is the "director" of the application, making decisions about the applications logic, requesting resources and handing them off to other parts of the app according to its called action.
+  However, if the request cannot be completed by the web server, it will then hit the Rails router, which will then call on the corresponding controller action for the request. The controller is the "director" of the application, making decisions about the applications logic, requesting resources and handing them off to other parts of the app according to its called action.
 
-  The model is solely responsible for interacting with the application database and only interacts with the controller and the database. It stores and pulls data objects to and from the database in accordance with it's business logic. This differs from the application logic, as it sets the "rules" for how a database object will behave. The controller might submit a buch of data to the model, which is then checked against this logic before being stored in the database, or the controller might request a specific object, which the model will then pull from the database and pass back to the controller.
+  The model is solely responsible for interacting with the application database and only interacts with the controller and the database. It stores and pulls data objects to and from the database in accordance with it's business logic. This differs from the application logic, as it sets the "rules" for how a database object will behave. The controller might submit a bunch of data to the model, which is then checked against this logic before being stored in the database, or the controller might request a specific object, which the model will then pull from the database and pass back to the controller.
 
-  The view is the part of the app responsible for formatting data into a human readable format. The view only communicates with the controller. Generally speaking, after requesting data objects from the model, the controller will then pass these objects or parts of these objects to the view. The view in turn will put these objects into a dynamically generated html document for example, but could also render a JSON, XML or some other human readable format. When this is done, it will hand the file back to the controller.
+  The view is the part of the app responsible for formatting data into a human readable format. The view only communicates with the controller. Generally speaking, after requesting data objects from the model, the controller will then pass these objects or parts of these objects to the view. The view in turn will put these objects into a dynamically generated HTML document for example, but could also render a JSON, XML or some other human readable format. When this is done, it will hand the file back to the controller.
 
-  Finally, the controller will pass this completed view, which has been built with the model pulled objects, according to the controller logic and the views rendering template, back to the browser to be displayed to the user. 
+  Finally, the controller will pass this completed view, which has been built with the model pulled objects, according to the controller logic and the views rendering template, back to the browser to be displayed to the user.  
   <details>
     <summary>Resources</summary>
 
@@ -36,14 +36,14 @@
   PostgreSQL is a common database used in web applications. While it is currently one of the most popular database management systems (DBMS) in use today, there are also some specific drawbacks to it. 
 
   Pro's
-    * PostgreSQL is an older, open source DBMS. Due to this, it is compatible with many languages with many OS's such as Linux, Mac and Windows. Additionally this means that PostgreSQL is also extremely stable and easy to intergrate into new and existing projects. 
+    * PostgreSQL is an older, open source DBMS. Due to this, it is compatible with many languages with many OS's such as Linux, Mac and Windows. Additionally this means that PostgreSQL is also extremely stable and easy to integrate into new and existing projects. 
     * As an open source DBMS, PostgreSQL is free to use for your application in whatever capacity you need it to operate in, no questions asked.
     * As an open source DBMS, PostgreSQL has a large and diverse community of developers who are consistently contributing to the codebase.
-    * Again, tying into the above points, because of its age and stability, you can install PostgreSQL and, after some configuration, easily use it for simple operations without having to worry too much about maintenence.
+    * Again, tying into the above points, because of its age and stability, you can install PostgreSQL and, after some configuration, easily use it for simple operations without having to worry too much about maintenance.
     * It is the closest DBMS to full SQL compliance (what does that mean?)
     * PostgreSQL is able to handle multiple users concurrently requesting and storing data at the same time. This means data is less likely to become corrupted during these operations and results in a much more robust web application.
 
-  Cons's
+  Con's
     * As an open source project, PostgreSQL is always changing. These changes must be documented but the standard of documentation is not consistent across the board. This essentially means you may spend a lot of time searching for documentation surrounding some of PostgreSQL darker corners. 
     * While PostgreSQL's ability to handle multiple users is one of its perks, the way it does this can become a con. When a connection is made, it is allocated approximately 10mb of memory. Naturally, this can add up quite quickly and is overkill for some operations.
     * There are not as many tools available to aid with the management of a PostgreSQL database.  
@@ -61,17 +61,17 @@
 * **Agile Development**
   In understanding how to implement an Agile development methodology, first we need to understand the difference between an agile methodology and the Agile "philosophy" as a whole.
 
-  The Agile development philosopy outlines broad ways of thinking about our projects and managing them. This is different to Agile methodologies, that build onto this principle and practical strategies for actually doing work in an Agile way.
+  The Agile development philosophy outlines broad ways of thinking about our projects and managing them. This is different to Agile methodologies, that build onto this principle and practical strategies for actually doing work in an Agile way.
 
   In this example, I will use the Scrum methodology to illustrate how a team would use Agile development for a project.
 
   1. Start with a strategy meeting. The idea behind this meeting is to layout the big picture and figure out what the core values of the project/product will be. Additionally this is the point where there needs to be buy-in from all levels of the project, from client to management. 
 
- 2. The next stage is to plan out the product backlog. This will be the "master" pool of work to get done which is consistently created and updated in conjuction with the client. The idea here is to plan out/update the goals for the project, rather than the specific features, and identify measurable ways of acheiving said goals. This promotes a more agile mindset as it moves away from planning absolutely everything before the work begins and allows for flexibility in meeting the goal. 
+ 2. The next stage is to plan out the product backlog. This will be the "master" pool of work to get done which is consistently created and updated in conjunction with the client. The idea here is to plan out/update the goals for the project, rather than the specific features, and identify measurable ways of achieving said goals. This promotes a more agile mindset as it moves away from planning absolutely everything before the work begins and allows for flexibility in meeting the goal. 
 
 3. And just before the work begins, just like the product backlog, it can be worth thinking about what the release timeline will look like. This means deciding what you MVP will look like and where you want to take it from there on a loose "release by release" basis. 
 
-4. At this stage, it's time to sprint. A sprint is a period of time, between 2-4 weeks usually, where the team will actually try to impliment some of the items in the product backlog by moving them into a spring backlog. Generally speaking, when the sprint has started, the team will work towards those goals and revise once the sprint has been completed. The sprint length will usually stay the same length for the duration of the project also. Towards the end of a sprint, the team will do a review and then retrospective. The review is meant to be an evaluation of what has been done during the sprint, what seems like the next step and the product owner ultimately deciding if that iteration of the project will be released. The retrospective is more of an evaluation of the effectiveness of the sprint as a whole, looking at what worked well and what can be improved. It should also be mentioned that during this time their is consistent liason between the developers and the client, in order to make sure their staying on target. 
+4. At this stage, it's time to sprint. A sprint is a period of time, between 2-4 weeks usually, where the team will actually try to implement some of the items in the product backlog by moving them into a spring backlog. Generally speaking, when the sprint has started, the team will work towards those goals and revise once the sprint has been completed. The sprint length will usually stay the same length for the duration of the project also. Towards the end of a sprint, the team will do a review and then retrospective. The review is meant to be an evaluation of what has been done during the sprint, what seems like the next step and the product owner ultimately deciding if that iteration of the project will be released. The retrospective is more of an evaluation of the effectiveness of the sprint as a whole, looking at what worked well and what can be improved. It should also be mentioned that during this time their is consistent liaison between the developers and the client, in order to make sure their staying on target. 
 
 5. The team begins another sprint, creates another sprint backlog and the cycle begins again. This will continue until the end of the project of the needs of the project change. This could look like the final release of a product, or a massive change in product direction.
   <details>
@@ -90,7 +90,7 @@
 * **Standard Source Control Workflow**
   The goal of implementing an effective source control workflow is to mitigate the difficulty and risk in working on a codebase. 
 
-  Developers will often have to work on portions of the same code-base simultaneously. Issues can arise when one developer unknowingly overwrites another developers code, or two developers work on seperate version of the software but cannot make them compatible. 
+  Developers will often have to work on portions of the same code-base simultaneously. Issues can arise when one developer unknowingly overwrites another developers code, or two developers work on separate version of the software but cannot make them compatible. 
 
   Using services, such as Git and Mercurial, developers now have a lot more flexibility in how they approach these sorts of issues.
 
@@ -139,17 +139,6 @@
 
 * **Security requirements**
 
-  Talk about reqs re australian law
-
-  Things to cover 
-    - user information
-    - encryption of credentials
-    - storage of information
-    - payment details
-    - payment processing (PCI)
-    - sessions
-    - monitoring
-
   For a marketplace web-application based on the Rails framework, there are some security requirements worth considering.
 
   If we think about what a marketplace needs from a user in order to function correctly, we can break the term "security requirements" down into "How do we protect users in these areas?"
@@ -162,7 +151,7 @@
 
   Another aspect for consideration is payment. Arguably the easiest way to "avoid" dealing with payment logistics is to have the two users sort out how they will arrange payment outside of the web application altogether. 
 
-  Otherwise, it is imperative that we consider the PCI standards for payment processing when designing our application. This set of guiding principles ensures that payments systems are secure and are required if you want to conduct transactions using large companies products such as Visa and Mastercard.
+  Otherwise, it is imperative that we consider the PCI standards for payment processing when designing our application. This set of guiding principles ensures that payments systems are secure and are required if you want to conduct transactions using large companies products such as Visa and MasterCard.
 
   Tying into this, if we are planning save user credit card information (if they elect to do so), this is very sensitive security area. Steps should be taken to ensure all data is encrypted and saved to the database in a way that cannot be easily accessed by developers or attackers.
 
@@ -193,9 +182,9 @@
 
   There is potential for SQL injection through a HTML form. The first line of defence here is using Rails validators. Rails validators allow us, in Ruby, to validate an input taken from a submitted form. The upshot of this approach is that the input can be checked before it hits a database or is potentially returned to a HTML/CSS/JS rendering browser. In this way we can safely handle potentially dangerous strings and reject them before they end up at their target destination in the framework. 
 
-  Its worth pointing out that if input doesnt pass validation, we want to reject that input and not render it back to the HTML document, as the string itself could be designed to target the front end encoding of the web application.
+  Its worth pointing out that if input doesn't pass validation, we want to reject that input and not render it back to the HTML document, as the string itself could be designed to target the front end encoding of the web application.
 
-  Validation will be extremely important for our marketplace application, as users will often be interacting with different forms in order to create accounts, sell items, buy items and search for items. Using html elements to ensure the correct type of input is used for each field is one step that should be taken. Additionally, server side validation should take place in order reject or filter out any unwanted inputs. This can be done with rails using strong parameters, permitting only the required fields. This also has the upshot of instrinsically parameter binding our permitted parameters to make SQL injection almost impossible. Parameter binding is simply assigning the parameters to variables, then passing those variables to the SQL statement, rather than directly interpolating the potentially malicious strings into the statement.
+  Validation will be extremely important for our marketplace application, as users will often be interacting with different forms in order to create accounts, sell items, buy items and search for items. Using html elements to ensure the correct type of input is used for each field is one step that should be taken. Additionally, server side validation should take place in order reject or filter out any unwanted inputs. This can be done with rails using strong parameters, permitting only the required fields. This also has the upshot of intrinsically parameter binding our permitted parameters to make SQL injection almost impossible. Parameter binding is simply assigning the parameters to variables, then passing those variables to the SQL statement, rather than directly interpolating the potentially malicious strings into the statement.
   
   We can also control what hits the database by using validation in our models thanks to the Rails validate feature. With this we gain even further control over what hits our database in the first place. A form input that does not pass model validation will never interact with the database.
 
@@ -205,15 +194,15 @@
 
   The next step is to ensure that the information is encrypted when it is stored in the database. 
 
-  Many 3rd party databases provide standing encryption. That is, the whole database is encrypted by default. However, this doesn't provide protection if an attacker gets hold of the database and is able to access it directly. The database will simply unencrypt and serve up whatever is requested.
+  Many 3rd party databases provide standing encryption. That is, the whole database is encrypted by default. However, this doesn't provide protection if an attacker gets hold of the database and is able to access it directly. The database will simply un-encrypt and serve up whatever is requested.
 
   The way we can address this issue is by using application level encryption. This is where we encrypt the information before it hits the database, so if an attacker were to pull gain access to the database, they would simply get encrypted responses. There are a few ways to do this, and there's a many Ruby gems that allow us to easily encrypt and decrypt without directly interacting with the keys in a way that would compromise privacy. Making an educated decision about this should be a point of discussion during development. 
 
-  Related to encryption and data transfer, ensuring transactions are safe and secure will be a big part of this application. An easier way to approach this is to use a third party payment processing service, such as stripe or paypal. This would require a secure redirect and return to and from the third party processer. Given the resources needed to ensure that payments and payment details are not compromised or intercepted, it would be worth weighing the requirements and cost of having a PCI compliant system if one is not already in place with the cost of using a third party provider.
+  Related to encryption and data transfer, ensuring transactions are safe and secure will be a big part of this application. An easier way to approach this is to use a third party payment processing service, such as stripe or PayPal. This would require a secure redirect and return to and from the third party processor. Given the resources needed to ensure that payments and payment details are not compromised or intercepted, it would be worth weighing the requirements and cost of having a PCI compliant system if one is not already in place with the cost of using a third party provider.
 
-  If PCI compliance is the goal, then heavy reference to the documentation will be needed to ensure that the overall system is safe from being compromised. This looks like ensuring that the system is firewalled properly from any external source, and from internal sources also. SSL is an absolute must in this case as users will be sending credit card details between their client and your server. Encryption of these details if they are being stored is also mandatory. Regular testing and updating must also be a part of the strategy, as risks change and the system ages. 
+  If PCI compliance is the goal, then heavy reference to the documentation will be needed to ensure that the overall system is safe from being compromised. This looks like ensuring that the system is fire-walled properly from any external source, and from internal sources also. SSL is an absolute must in this case as users will be sending credit card details between their client and your server. Encryption of these details if they are being stored is also mandatory. Regular testing and updating must also be a part of the strategy, as risks change and the system ages. 
 
-  A marketplace app is likely to use session cookies in order to store the user state on a clients browser. This allows us easier way to create things like Cart funtionality and negates the need to reauthorise the user every time they visit a new page. However, this does create a security concern. These session cookies, if discovered by an attacker can lead to the session being "hijacked", with the attacker impersonating a valid users browser. 
+  A marketplace app is likely to use session cookies in order to store the user state on a clients browser. This allows us easier way to create things like Cart functionality and negates the need to re-authorise the user every time they visit a new page. However, this does create a security concern. These session cookies, if discovered by an attacker can lead to the session being "hijacked", with the attacker impersonating a valid users browser. 
 
   Having an SSL certificate and forcing the application to use HTTPS is a good start on how to keep attackers from intercepting a session token. Rails also has some great inbuilt security features for ensuring session fixation is impossible, such as resetting the session_id after each successful login. The Devise gem, a popular Rails gem for user login and management, incorporates many of these features by default. 
 
@@ -221,7 +210,7 @@
 
   Lastly, the content on the marketplace should be monitored. A user should not be able to sell illegal goods through your marketplace and steps should be taken to try and identify and take down potential scams. This can be done using a web crawler that will alert an admin, or better yet, automate the process of removing potentially illegal content from the web application. 
 
-  This should go hand in hand with a user policy, that if violated, will end up with the user being banned from the platform. Additionally, steps should be taken to increase awareness of other users around scams and ensuring they have some degree of trust in the seller. This can be potentially be acheived through a vouching system, where sellers with a good track record will get a rating, etc. Going hand in hand with this awareness, allowing users to report suspicious or illegal content can help fill in the gaps of a webcrawler, which might miss a more nuanced attempt at selling illegal products.  
+  This should go hand in hand with a user policy, that if violated, will end up with the user being banned from the platform. Additionally, steps should be taken to increase awareness of other users around scams and ensuring they have some degree of trust in the seller. This can be potentially be achieved through a vouching system, where sellers with a good track record will get a rating, etc. Going hand in hand with this awareness, allowing users to report suspicious or illegal content can help fill in the gaps of a web-crawler, which might miss a more nuanced attempt at selling illegal products.  
 
   <details>
     <summary>Resources</summary>
@@ -254,7 +243,7 @@
 
     2. A user should be able to be anonymous or use a pseudonym in place of anything that could be potentially identifying
     3. The company should not store or collect personal information that is not required for functionality of the application.
-    4. The company should have a policy for dealing with personal information that is voluntarily given. For example, if information is given to the company without any collection on the companies part, and that information is not publically available, the information should be destroyed.
+    4. The company should have a policy for dealing with personal information that is voluntarily given. For example, if information is given to the company without any collection on the companies part, and that information is not publicly available, the information should be destroyed.
     5. The company must notify the user that they are collecting personal information at the time of collection and inform them for what purpose. 
     6. The company must tell the user under what circumstances that it would disclose the personal information of the user to an external entity.
     7. The company must not disclose user information for direct marketing purposes unless that is what is expected of the company.
@@ -263,7 +252,7 @@
     10. The company should ensure that the user information is up do date and complete.
     11. The company must take precautionary steps to make sure the data is protected and cannot be maliciously accessed. 
     12. The company must provide the personal information to and user who requests it.
-    13. The company must request the user to update their information if they beleive it is inaccurate or out of date.
+    13. The company must request the user to update their information if they believe it is inaccurate or out of date.
 
   <details>
     <summary>Resources</summary>
@@ -289,7 +278,7 @@
 
   Its also worth mentioning that in a relational database, all tables will have a primary key, which is a way of identifying each individual entry on a table.
 
-  Once the columns of a named table are defined, we add data to the table in the form of rows. Everytime a new row is added, it is assigned a unique primary key and then the rest of the now created cells are now filled out accordingly. 
+  Once the columns of a named table are defined, we add data to the table in the form of rows. Every time a new row is added, it is assigned a unique primary key and then the rest of the now created cells are now filled out accordingly. 
 
   These columns can also reference foreign primary keys, and the database will know which table to look to for the primary key. For example, if a "post" table had a foreign "user_id" key, it would know to look at the user table in order to locate that primary key.
 
@@ -307,7 +296,7 @@
 
 * **Relational Database Integrity**
 
-  Relational databases creates integrity in the way it stores information intrinsically by providing each stored peice of information with its own primary key. When this happens it makes sure that there is no duplicate data within the database. You could create a table and fill out the columns identically for every entry, but the primary key will always be different.
+  Relational databases creates integrity in the way it stores information intrinsically by providing each stored piece of information with its own primary key. When this happens it makes sure that there is no duplicate data within the database. You could create a table and fill out the columns identically for every entry, but the primary key will always be different.
 
   This also creates integrity around the relationships within that database. Using foreign keys, a database table will know exactly where and what to look for at all times. 
 
@@ -337,7 +326,7 @@
   ```SELECT * FROM users WHERE email = "sam@sam.com";```
   This would return all columns from all entries where email matches the query string. 
 
-  Relational databases also intrisically look through tables that are referenced 
+  Relational databases also intrinsically look through tables that are referenced 
 
   <details>
     <summary>Resources</summary>
@@ -431,7 +420,7 @@
 
       We now have a new array with the sorted values of the old array. 
 
-      There are many different ways to do this that are more space effecient and use only two arrays rather than an array and a hash.
+      There are many different ways to do this that are more space efficient and use only two arrays rather than an array and a hash.
 
       ```ruby
         def counting_sort(arr,range)
@@ -465,7 +454,7 @@
       ``` 
 
 
-    In terms of Big-O notation, we can see that the selection sort method uses two loops to acheive the desired output, one nested inside of another.
+    In terms of Big-O notation, we can see that the selection sort method uses two loops to achieve the desired output, one nested inside of another.
 
     If there was only one loop, then the complexity would grow linearly. This basically means if we asked a program to iterate over an array of 10 elements, it would take 10 times the amount of time to do the same operation over a list of 100 elements. We can say that the complexity of the method grows linearly with the amount of data points given to it. This is expressed as O(n).
 
@@ -478,7 +467,7 @@
 
     We can express this more clearly by writing O(n + k), where n is the size of the input array and k is the size of the range. While this complexity is linear, if we had a very large range, like 10,000, and a small array, like 5, we're iterating through a large number of keys in a hash for only a small amount of elements to sort. 
 
-    Within the above example it should also be noted that there is technically a nested loop that executes everytime a value more than 0 is found in the count hash. This does not add to the Big-O complexity however, as this times loop will only ever execute as many times as the input array is large, instead of fully looping through the input array each time it is called. It therefore does not make the notation O(n2)
+    Within the above example it should also be noted that there is technically a nested loop that executes every time a value more than 0 is found in the count hash. This does not add to the Big-O complexity however, as this times loop will only ever execute as many times as the input array is large, instead of fully looping through the input array each time it is called. It therefore does not make the notation O(n2)
 
     Where the counting sort really shines is where we know the range will be close to, or less than the size of the array to be sorted.
 
@@ -493,7 +482,7 @@
       => Counting Sort = O(5,050)
       => Selection Sort = O(2500)
 
-      We can see here, according to context, that the counting sort works better situationally, with integers and when the range is known.
+      We can see here, according to context, that the counting sort works better in the correct context; with integers and when the range is known.
   
   <details>
     <summary>Resources</summary>
@@ -510,7 +499,7 @@
 
 * **Search Algorithms**
   * Linear search
-    A linear seach is as simple as a search algorithm can get.
+    A linear search is as simple as a search algorithm can get.
     A linear search will take a sorted or unsorted array and a value that it is looking for. It will then iterate over the array and compare the value its looking for with each value in the array. 
     
     ```ruby
@@ -530,7 +519,7 @@
       end
     ```
 
-    This extremely simple approach is not complicated and has a fairly low completixty, but even at this complexity, very large datasets can take a long time to iterate through large datasets. This is where we can use a binary search in the right context to make the search faster.
+    This extremely simple approach is not complicated and has a fairly low complexity, but even at this complexity, very large datasets can take a long time to iterate through large datasets. This is where we can use a binary search in the right context to make the search faster.
 
   * Binary search
 
@@ -571,13 +560,13 @@
       end
     ```
 
-    In terms of Big-O notation, both of these search methods are relatively low complexity, especially when contrasted with the sorting algorithms. However there are differences between the two search methods desribed above.
+    In terms of Big-O notation, both of these search methods are relatively low complexity, especially when contrasted with the sorting algorithms. However there are differences between the two search methods described above.
 
     The linear search has a Big-O complexity of O(n), so the complexity increases linearly with the number of elements given to it. It will take 100 times longer to iterate over 1,000 elements as it would 10. As we can see, this is fine up to a point, but if we're working with large datasets this can become an issue.
 
     This is where the binary search can shine. As long as the array is sorted then the binary search has a complexity of O(log n). log n is basically the opposite to exponential growth. Exponential means that with every operation our workload increases by double or more. Logarithmic is the opposite, meaning our workload will be at least halved on each operation. Looking at the code above, we can see that the binary search function quite literally halves our array each time it performs our method. This results in a logarithmic runtime, and can be easily visualised as a curve on a graph that starts steep, then flattens out as time goes on. 
 
-    With large datasets, this can be powerful. If we have a dataset of 10,000 datapoints, and we double this to 20,000, a O(log n) function like a binary search will only take one extra operation to reach the same complexity as the same method run with 10,000 datapoints. Very cool. 
+    With large datasets, this can be powerful. If we have a dataset of 10,000 data points, and we double this to 20,000, a O(log n) function like a binary search will only take one extra operation to reach the same complexity as the same method run with 10,000 data points. Very cool. 
 
   <details>
     <summary>Resources</summary>
@@ -594,7 +583,7 @@
   ### Airbnb
   1. **Describe the software used by the app**
    
-     Airbnb uses a huge range of software to deliver its two sided marketplace. I will touch on the biggest and most relevant peices of its software stack:
+     Airbnb uses a huge range of software to deliver its two sided marketplace. I will touch on the biggest and most relevant pieces of its software stack:
      * **Ruby on Rails:** The base framework that Airbnb is built on is Ruby on Rails. Rails is written and operates in Ruby. However, Rails simply handles the backend for airbnb, whereas the front end is handled by React, described below.
   
      * **React:** React is a popular javascript framework used mainly for front end design. This framework is built on the Javascript language. In this case, combining React with Rails gives Airbnb the flexibility in front end design that React caters for, while maintaining a Rails backend.
@@ -614,13 +603,13 @@
      *  **Amazon RDS:** The Amazon RDS acts as the main and centralised relational database for the Airbnb app.
 
 
-     *  **Hadoop:** Hadoop is a software tool that "splits up" the work of making database queries over more than one computer. Simply put, if one computer makes one large request to the database, the database must send back all of that data to the same computer. But if several computers make smaller requests to the database, the database can deliver all these parts simultaneously to different computers, which then reduce these smaller parts into one larger part, resulting in a faster, more effecient request.
+     *  **Hadoop:** Hadoop is a software tool that "splits up" the work of making database queries over more than one computer. Simply put, if one computer makes one large request to the database, the database must send back all of that data to the same computer. But if several computers make smaller requests to the database, the database can deliver all these parts simultaneously to different computers, which then reduce these smaller parts into one larger part, resulting in a faster, more efficient request.
 
 
-     *  **Airflow:** Airflow is a simple tool that allows tasks to be run in order of operations, automatically. Say for example, you wanted to generate an email, but needed to collect a bunch of data in order to do this properly, and the email itself may look different depending on the state of whatever you're checking it against. Airflow can move through the application and peice these things together once the workflow has been designed for it. 
+     *  **Airflow:** Airflow is a simple tool that allows tasks to be run in order of operations, automatically. Say for example, you wanted to generate an email, but needed to collect a bunch of data in order to do this properly, and the email itself may look different depending on the state of whatever you're checking it against. Airflow can move through the application and piece these things together once the workflow has been designed for it. 
 
 
-     *  **Druid:** Druid acts as a big data sythesizer, that can listen in on events of the app and aggregate these into statistics. These numbers can be used hand in hand with creating user interfaces relating to these values.
+     *  **Druid:** Druid acts as a big data synthesizer, that can listen in on events of the app and aggregate these into statistics. These numbers can be used hand in hand with creating user interfaces relating to these values.
 
 
      *  **Twilio SendGrid:** Twilio is an API used for sending emails to users.
@@ -638,7 +627,7 @@
   
   3. **Describe the interaction of technologies within the app** 
     
-      Ruby on Rails acts as the base framework for the airbnb application. This handles all the back end processing of the application. The is intergrated with React in order to create a complex front end that is able to dynamically render content depending on the browser state. All of this is served through the Nginx webserver which handles the connections and requests from browsers asking for data from the application. When a request is made to the application through the webserver and a database query needs to be made, this is done through an interplay of a few different technologies. For images, the application will query the S3 database, which is responsible for cloud storage of media. For other database queries, the application will interrogate the RDS, Amazons relational SQL database, using Hadoop, to split the requests over multiple ports of call and then reduce them into the final data object, to complete the request faster. At this stage, what can be cached in Redis, which is reponsible for temporarily holding onto specific data types in a non-relational way, will be cached, so less successive database queries need to be made if the browser returns to an old page, or a new page requires the same data as a previous one. Running in parallel with all of this are a few technologies also. Airflow, responsible for workflow automation, will be working in the background, automating tasks that must be done according to a workflow, such as email, which is then handled by the Twilio SendGrid API. Druid is also listening in to the events on the application and presumably having that data synthesized meaningfully elsewhere. Braintree is the payment processor that steps in when a payment action is required on the site. 
+      Ruby on Rails acts as the base framework for the airbnb application. This handles all the back end processing of the application. The is integrated with React in order to create a complex front end that is able to dynamically render content depending on the browser state. All of this is served through the Nginx webserver which handles the connections and requests from browsers asking for data from the application. When a request is made to the application through the webserver and a database query needs to be made, this is done through an interplay of a few different technologies. For images, the application will query the S3 database, which is responsible for cloud storage of media. For other database queries, the application will interrogate the RDS, Amazons relational SQL database, using Hadoop, to split the requests over multiple ports of call and then reduce them into the final data object, to complete the request faster. At this stage, what can be cached in Redis, which is responsible for temporarily holding onto specific data types in a non-relational way, will be cached, so less successive database queries need to be made if the browser returns to an old page, or a new page requires the same data as a previous one. Running in parallel with all of this are a few technologies also. Airflow, responsible for workflow automation, will be working in the background, automating tasks that must be done according to a workflow, such as email, which is then handled by the Twilio SendGrid API. Druid is also listening in to the events on the application and presumably having that data synthesized meaningfully elsewhere. Braintree is the payment processor that steps in when a payment action is required on the site. 
 
       This is all hosted and scaled on AWS services, which look after the maintenance and scaling of the application, leaving the application team to solely focus on the interplay of the apps technologies without worrying about the size or speed limitations of the hardware needed.
 
@@ -660,16 +649,16 @@
 
   5. **Tracked entities**
 
-      For brevity I have only mapped the airbnb marketplace for the interaction of users and rooms, omitting experiences. I understand that experiences operate in much a similar way to rooms, but I think that demonstrating the same thing twice is unnessecary and would sacrifice readability.
+      For brevity I have only mapped the airbnb marketplace for the interaction of users and rooms, omitting experiences. I understand that experiences operate in much a similar way to rooms, but I think that demonstrating the same thing twice is unnecessary and would sacrifice readability.
 
       * **Users:** Stores all unique information relevant to a specific user, such as name, password, email and other personal details. Also contains id numbers for other services such as google and facebook and boolean values regarding the users particular binary settings.
       * **User reviews:** Contains a short review of a particular user, from another user
       *  **User review comments:** a responding comment of a user review, from another user.
       *  **Card details:** Contains all the card details of a particular users card and its country
       *  **Country:** Contains all countries
-      *  **Paypals:** Contains all paypals, each specific to a different user.
+      *  **PayPal's:** Contains all PayPal details, each specific to a different user.
       *  **Australian Bank Details:** Contains all bank details, each specific to a different user.
-      *  **VAT id's:** Contains VAT tax codes, each speficic to a different user.
+      *  **VAT id's:** Contains VAT tax codes, each specific to a different user.
       *  **Notification preferences:** A series of entities that contain boolean operators regarding if a particular user wishes to be notified and in which ways they want to be notified. The entities are separate as the same way of communicating can be used for different types of notification, for example, account vs policy notifications via text. 
       *  **Languages:** Contains all spoken languages.
       *  **User languages:** A joining entity between languages and users.
@@ -685,11 +674,11 @@
 
       *  **Rooms:** Contains information specific to a room, such as the host, its rating, prices and fees, its location, number of beds, bathrooms and its description.
       *  **Room Categories**: Contains a list of possible room categories.
-      *  **Room cancellation policies:** Contains information on a cancellation policly, like how many hours for a free cancel, what window there is for a partial refund, what percentage is refunded, and whether a service fee is charged.
+      *  **Room cancellation policies:** Contains information on a cancellation policy, like how many hours for a free cancel, what window there is for a partial refund, what percentage is refunded, and whether a service fee is charged.
       *  **Check-in types:** A list of different types of check-in for rooms.
-      *  **Room discount policies:** Conatins information as to whether a room has a weekly or monthly discount, and if so, what the percentages of those discounts are.
+      *  **Room discount policies:** Contains information as to whether a room has a weekly or monthly discount, and if so, what the percentages of those discounts are.
       *  **Room pictures:** Simply contains a bunch of pointers to amazon s3 images for a particular room.
-      *  **Room amenities:** Is a joining entity for rooms and amenitites
+      *  **Room amenities:** Is a joining entity for rooms and amenities
       *  **Amenities:** Contains a list of amenities.
       *  **Room reviews:** Contains information about a room and a user who stayed their as well as a review.
       *  **Ratings:** Contains a set of values relating to a room review around the different aspects of a room.
@@ -707,7 +696,7 @@
           * Site language
           * Currency
           * Timezone
-          * Paypal
+          * PayPal
           * Bank details
           * VAT
           * Notification Preferences
@@ -742,7 +731,7 @@
         Belongs to:
           * User
 
-      * **Paypals:**
+      * **PayPal's:**
 
         Belongs to:
           * User
@@ -818,12 +807,12 @@
         Has one:
           * Room Category
           * Room Cancellation Policy
-          * Checkin type
+          * Check in type
           * Discount Policy
 
         Has many: 
           * Room pictures
-          * Amenitites THROUGH Room Amenities
+          * Amenities THROUGH Room Amenities
           * Room Reviews
           * Bookings
           * Saves
@@ -833,7 +822,7 @@
         Has many:
           * Rooms
 
-      * **Checkin type:**
+      * **Check in type:**
 
         Has many:
           * Rooms
