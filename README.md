@@ -123,21 +123,24 @@
 <br>
 
 * **Automated Testing**
-  Before or early on in a projects timeline it is important to consider the role of testing. There are many different approaches to testing and no "right answer" as the needs of every project differs. Automated unit testing is just one small way that a developer can test software in order to ensure it functions correctly.
+
+
+  Before or early on in a projects timeline, it is important to consider the role of testing. There are many different approaches to testing and no "right answer" as the needs of every project differs. Automated unit testing is just one small way that a developer can test software in order to ensure it functions correctly.
 
   Unit testing is testing small bits of code to ensure they are giving the desired output. For example, if you designed a function, ideally it would take an input, and give you some kind of output. Unit testing looks at these smaller, fundamental functions and matches expected outputs with actual outputs.
   
   Using a test driven development (TDD) approach to create automated unit tests, the developer would first think about the function of the program and design the tests before the program itself. By using this approach, the developer intrinsically lays the foundation for a codebase that is more easily tested.
 
-  Once the test have been planned, the develop would then either create their own programmable tests or use third party software/programs to do so.
+  Once the test have been planned, the developer would then either create their own programmable tests or use third party software/programs to do so.
 
-  The next step is to actually create functions that pass these tests, and then refactor these functions into the wanted end program. Throughout the entire process the tests should always "pass". It is easy to imagine how much fore-thought needs to go into the program before a single line of code is written in order to create comprehensive TDD compliant unit tests for the lifetime of the project.
+  The next step is to actually create functions that pass these tests, and then refactor these functions into the wanted end program. Throughout the entire refactoring process the tests should always "pass". It is easy to imagine how much fore-thought needs to go into the program before a single line of code is written in order to create comprehensive TDD compliant unit tests for the lifetime of the project.
 
   A huge advantage to using a TDD approach to create unit tests and then a program that will pass those tests is that it creates a robust code-base. If many of the smaller moving parts of a program are not intrinsically dependent on the whole program in order to function, they can be easily tested, debugged, modified and re-used elsewhere, potentially even in a different codebase.
   <details>
     <summary>Resources</summary>
-    https://www.w3schools.in/software-testing/types/#Automation_Testing
-    https://smartbear.com/learn/automated-testing/what-is-automated-testing/
+
+    *  https://www.w3schools.in/software-testing/types/#Automation_Testing
+    *  https://smartbear.com/learn/automated-testing/what-is-automated-testing/
   </details>
 </details>
 
