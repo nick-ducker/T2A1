@@ -211,11 +211,11 @@
 
   The way we can address this issue is by using application level encryption. This is where we encrypt the information before it hits the database, so if an attacker were to pull gain access to the database, they would simply get encrypted responses. There are a few ways to do this, and there's a many Ruby gems that allow us to easily encrypt and decrypt without directly interacting with the keys in a way that would compromise privacy. Making an educated decision about this should be a point of discussion during development. 
 
-  Related to encryption and data transfer, ensuring transactions are safe and secure will be a big part of this application. An easier way to approach this is to use a third party payment processing service, such as stripe or PayPal. This would require a secure redirect and return to and from the third party processor. Given the resources needed to ensure that payments and payment details are not compromised or intercepted, it would be worth weighing the requirements and cost of having a PCI compliant system if one is not already in place with the cost of using a third party provider.
+  Related to encryption and data transfer, ensuring transactions are safe and secure will be a big part of this application. An easier way to approach this is to use a third party payment processing service, such as Stripe or PayPal. This would require a secure redirect and return, to and from the third party processor. Given the resources needed to ensure that payments and payment details are not compromised or intercepted, it would be worth weighing the requirements and cost of having a PCI compliant system if one is not already in place with the cost of using a third party provider.
 
   If PCI compliance is the goal, then heavy reference to the documentation will be needed to ensure that the overall system is safe from being compromised. This looks like ensuring that the system is fire-walled properly from any external source, and from internal sources also. SSL is an absolute must in this case as users will be sending credit card details between their client and your server. Encryption of these details if they are being stored is also mandatory. Regular testing and updating must also be a part of the strategy, as risks change and the system ages. 
 
-  A marketplace app is likely to use session cookies in order to store the user state on a clients browser. This allows us easier way to create things like Cart functionality and negates the need to re-authorise the user every time they visit a new page. However, this does create a security concern. These session cookies, if discovered by an attacker can lead to the session being "hijacked", with the attacker impersonating a valid users browser. 
+  A marketplace app is likely to use session cookies in order to store the user state on a clients browser. This allows us easier way to create things like cart functionality and negates the need to re-authorise the user every time they make a new request. However, this does create a security concern. These session cookies, if discovered by an attacker can lead to the session being "hijacked", with the attacker impersonating a valid users browser. 
 
   Having an SSL certificate and forcing the application to use HTTPS is a good start on how to keep attackers from intercepting a session token. Rails also has some great inbuilt security features for ensuring session fixation is impossible, such as resetting the session_id after each successful login. The Devise gem, a popular Rails gem for user login and management, incorporates many of these features by default. 
 
@@ -223,15 +223,18 @@
 
   Lastly, the content on the marketplace should be monitored. A user should not be able to sell illegal goods through your marketplace and steps should be taken to try and identify and take down potential scams. This can be done using a web crawler that will alert an admin, or better yet, automate the process of removing potentially illegal content from the web application. 
 
-  This should go hand in hand with a user policy, that if violated, will end up with the user being banned from the platform. Additionally, steps should be taken to increase awareness of other users around scams and ensuring they have some degree of trust in the seller. This can be potentially be achieved through a vouching system, where sellers with a good track record will get a rating, etc. Going hand in hand with this awareness, allowing users to report suspicious or illegal content can help fill in the gaps of a web-crawler, which might miss a more nuanced attempt at selling illegal products.  
+  This should go hand in hand with a user policy, that if violated, will end up with the user being banned from the platform. Additionally, steps should be taken to increase awareness of other users around scams and ensuring they have some degree of trust in the seller. This can be potentially be achieved through a vouching system, where sellers with a good track record will get a rating, etc. 
+  
+  Going hand in hand with this awareness, allowing users to report suspicious or illegal content can help fill in the gaps of a web-crawler, which might miss a more nuanced attempt at selling illegal products.  
 
   <details>
     <summary>Resources</summary>
-    https://martinfowler.com/articles/web-security-basics.html
-    https://ankane.org/sensitive-data-rails 
-    https://www.netsparker.com/blog/web-security/definitive-pci-dss-compliance-guide-web-application-security/
-    https://guides.rubyonrails.org/security.html
-    https://evercompliant.com/fraud-prevention-tool-box-content-monitoring-on-steroids/
+
+    *  https://martinfowler.com/articles/web-security-basics.html
+    *  https://ankane.org/sensitive-data-rails 
+    *  https://www.netsparker.com/blog/web-security/definitive-pci-dss-compliance-guide-web-application-security/
+    *  https://guides.rubyonrails.org/security.html
+    *  https://evercompliant.com/fraud-prevention-tool-box-content-monitoring-on-steroids/
   </details>
 </details>
 
@@ -264,19 +267,18 @@
     9. The company should not identify itself as government affiliated in anyway, unless it is.
     10. The company should ensure that the user information is up do date and complete.
     11. The company must take precautionary steps to make sure the data is protected and cannot be maliciously accessed. 
-    12. The company must provide the personal information to and user who requests it.
+    12. The company must provide the personal information to the user who's information it is if a request is made to do so.
     13. The company must request the user to update their information if they believe it is inaccurate or out of date.
 
   <details>
     <summary>Resources</summary>
 
-    https://gbksoft.com/blog/legal-pitfalls-of-app-development/
-    https://legal123.com.au/how-to-guide/how-to-develop-an-app-infographic/
-    https://www.oaic.gov.au/privacy/guidance-and-advice/mobile-privacy-a-better-practice-guide-for-mobile-app-developers/
-
-    https://www.oaic.gov.au/privacy/the-privacy-act/rights-and-responsibilities/
-    https://www.business.gov.au/Risk-management/Cyber-security/How-to-protect-your-customers-information
-    https://www.oaic.gov.au/privacy/australian-privacy-principles
+    *  https://gbksoft.com/blog/legal-pitfalls-of-app-development/
+    *  https://legal123.com.au/how-to-guide/how-to-develop-an-app-infographic/
+    *  https://www.oaic.gov.au/privacy/guidance-and-advice/mobile-privacy-a-better-practice-guide-for-mobile-app-developers/
+    *  https://www.oaic.gov.au/privacy/the-privacy-act/rights-and-responsibilities/
+    *  https://www.business.gov.au/Risk-management/Cyber-security/How-to-protect-your-customers-information
+    *  https://www.oaic.gov.au/privacy/australian-privacy-principles
   </details>
 </details>
 
