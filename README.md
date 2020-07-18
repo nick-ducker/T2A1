@@ -930,13 +930,14 @@
 
   <details>
     <summary>Resources</summary>
-    https://www.airbnb.com.au
-    https://stackshare.io/companies/airbnb
-    https://www.forbes.com/sites/quora/2018/02/20/what-technology-stack-does-airbnb-use/#286998c64025
-    https://www.nginx.com/resources/wiki/
-    https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-1-what-is-redis/
-    https://www.youtube.com/watch?v=9s-vSeWej1U
-    https://www.youtube.com/watch?v=xQBNn67rL_o
+
+    *  https://www.airbnb.com.au
+    *  https://stackshare.io/companies/airbnb
+    *  https://www.forbes.com/sites/quora/2018/02/20/what-technology-stack-does-airbnb-use/#286998c64025
+    *  https://www.nginx.com/resources/wiki/
+    *  https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-1-what-is-redis/
+    *  https://www.youtube.com/watch?v=9s-vSeWej1U
+    *  https://www.youtube.com/watch?v=xQBNn67rL_o
 
   </details>
 </details>

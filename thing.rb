@@ -40,40 +40,96 @@ arr = Array[1,45,10,80,35,35,35,100,13,147,13,500,80]
 
 #   return array
 # end
-#First we create an array to sort
-arr = Array[1,45,10,80,35,35,35,100,13,147,13,500,80]
-#We then define the range for the array
-range = 500
 
 
-def counting_sort(arr,range)
-  #We generate a hash with with keys that correspond to every number within the arrays predetermined range, all pointing to zero.
-  setup = *(1..range)
-  count = Hash[setup.collect { |value| [value, 0] }]
-  #We then generate a new array to push our counted hash into later
-  finalarr = Array.new
+# #First we create an array to sort
+# arr = Array[1,45,10,80,35,35,35,100,13,147,13,500,80]
+# #We then define the range for the array
+# range = 500
 
-  #We iterate through the array and increment the count on the hash where there is a matching key
-  arr.each do |element|
-    count[element] += 1
-  end
 
-  #We then iterate through the hash and look for keys with values more than zero 
-  count.each do |key, value|
-    if value > 0
-      #if a key has a value more than zero, we push that key to the new array as many times as the value states.
-      value.times do
-        finalarr << key
-      end
+# def counting_sort(arr,range)
+#   #We generate a hash with with keys that correspond to every number within the arrays predetermined range, all pointing to zero.
+#   setup = *(1..range)
+#   count = Hash[setup.collect { |value| [value, 0] }]
+#   #We then generate a new array to push our counted hash into later
+#   finalarr = Array.new
+
+#   #We iterate through the array and increment the count on the hash where there is a matching key
+#   arr.each do |element|
+#     count[element] += 1
+#   end
+
+#   #We then iterate through the hash and look for keys with values more than zero 
+#   count.each do |key, value|
+#     if value > 0
+#       #if a key has a value more than zero, we push that key to the new array as many times as the value states.
+#       value.times do
+#         finalarr << key
+#       end
       
-    else
-      #Otherwise, we move onto the next key
-      next
-    end
-  end
+#     else
+#       #Otherwise, we move onto the next key
+#       next
+#     end
+#   end
 
-  return finalarr
+#   return finalarr
+# end
+
+# counting_sort(arr,range)
+
+
+# array = Array[1,45,10,80,35,35,35,100,13,147,13,500,80]
+
+# def linear_search(array, find)
+#   # We iterate through each element of the array
+#   array.each do |element|
+#     # We compare each element to the value we're looking for
+#     if element == find
+#       return "#{element} found"
+#     # If it doesn't exist, we move onto the next element
+#     else
+#       next
+#     end
+#   end
+#   # If the element is not found after a complete iteration over the array, we return nil.
+#   return "#{find} not found"
+# end
+
+# puts linear_search(array, 35)
+# puts linear_search(array, 1000)
+
+#We set default values for the minimum index and max index
+def binary_search(sorted_array, find, min=0, max=sorted_array.size-1)
+
+  #We create a midpoint var to help us point to the middle of the array as defined by the min and max index pointers.
+  midpoint = (min + max) / 2
+
+  #We use a spaceship operator to compare the midpoint element with the value we wish to find
+  case sorted_array[midpoint] <=> find
+  when 0
+    #We return that the element has been found
+    return "The element is at index #{midpoint}"
+  when -1
+    #We check if there is only one element left in the array and halt the method if so
+    return "Element not present" if (min - max) == 0
+    #Otherwise, we set our minimum index to 1 above the midpoint
+    min = midpoint + 1
+    #We the recursively call the method on itself with the updated min index
+    binary_search(sorted_array, find, min, max)
+  when 1
+    #We check if there is only one element left in the array and halt the method if so
+    return "Element not present" if (min + max) == 1
+    #Otherwise, we set our maximum index to 1 below the midpoint
+    max = midpoint - 1
+    #We then recursively call the method on itself with the updated max index
+    binary_search(sorted_array, find, min, max)
+  end
 end
 
-counting_sort(arr,range)
 
+
+arr = Array(2..100)
+
+puts binary_search(arr, 2)
