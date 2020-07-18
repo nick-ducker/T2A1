@@ -6,21 +6,21 @@
 <summary></summary>
 <br>
 
-  *  **Typical Rails Architecture**
-  
-     The typical Ruby on Rails web application is based on the Model, View, Controller (MVC) architecture. This architecture splits up the code of an app into three distinct part s, each responsible for their specific role in the apps functionality. 
+![MVC Diagram](docs/mvc-rails.png)
 
-      ![MVC Diagram](docs/mvc-rails.png)
+*  **Typical Rails Architecture**
 
-      When a web browser makes a request to a Rails application, first the web server will check if what has been requested is publicly and locally available. If it is, this is then returned without having to delve into the Rails application. An example of this would be a 404 page.
+  The typical Ruby on Rails web application is based on the Model, View Controller (MVC) architecture. This architecture splits up the code of an app into three distinct part's, each responsible for their specific role in the apps functionality. 
 
-      However, if the request cannot be completed by the web server, it will then hit the Rails router, which will then call on the corresponding controller action for the request. The controller is the "director" of the application, making decisions about the applications logic, requesting resources and handing them off to other parts of the app according to its called action.
+  When a web browser makes a request to a Rails application, first the web server will check if what has been requested is publicly and locally available.If it is,this is then returned without having to delve into the Rails application. An example of this would be a 404 page.
 
-      The model is solely responsible for interacting with the application database and only interacts with the controller and the database. It stores and pulls data objects to and from the database in accordance with it's business logic. This differs from the application logic, as it sets the "rules" for how a database object will behave. The controller might submit a bunch of data to the model, which is then checked against this logic before being stored in the database, or the controller might request a specific object, which the model will then pull from the database and pass back to the controller.
+  However, if the request cannot be completed by the web server, it will then hit the Rails router,which will then call on the corresponding controller action for the request. The controller is the "director" of the application,making decisions about the applications logic,requesting resources and handing them off to other parts of the app according to its called action.
 
-      The view is the part of the app responsible for formatting data into a human readable format. The view only communicates with the controller. Generally speaking, after requesting data objects from the model, the controller will then pass these objects or parts of these objects to the view. The view in turn will put these objects into a dynamically generated HTML document for example, but could also render a JSON, XML or some other human readable format. When this is done, it will hand the file back to the controller.
+  The model is solely responsible for interacting with the application database and only interacts with the controller and the database. It stores and pulls data objects to and from the database in accordance with it's business logic.This differs from the application logic,as it sets the "rules" for how a database object will behave. The controller might submit a bunch of data to the model,which is then checked against this logic before being stored in the database, or the controller might request a specific object,which the model will then pull from the database and pass back to the controller.
 
-      Finally, the controller will pass this completed view, which has been built with the model objects, according to the controller logic and the views rendering template, back to the browser to be displayed to the user.  
+  The view is the part of the app responsible for formatting data into a human readable format. The view only communicates with the controller. Generally speaking, after requesting data objects from the model, the controller will then pass these objects or parts of these objects to the view.The view in turn will put these objects into a dynamically generated HTML document for example, but could also render a JSON,XML or some other human readable format. When this is done, it will hand the file back to the controller.
+
+  Finally, the controller will pass this completed view, which has been built with the model objects, according to the controller logic and the views rendering template, back to the browser to be displayed to the user.  
   <details>
     <summary>Resources</summary>
 
@@ -151,9 +151,9 @@
 
 * **Security requirements**
 
-  For a marketplace web-application based on the Rails framework, there are some security requirements worth considering.
+  For a marketplace web-application based on the Rails framework there are some security requirements worth considering.
 
-  If we think about what a marketplace needs from a user in order to function correctly, we can break the term "security requirements" down into "How do we protect users in these areas?"
+  If we think about what a marketplace needs from a user in order to function correctly, we can break the term "security requirements" down into "How do we protect users in these areas?"
 
   Most marketplace apps rely on user to user interaction. Because of this, we need to differentiate our users, which in turns means storing some kind of information, unique to each user. This could be as simple as a password and username, to a full documentation of email, phone number and address. Regardless, the approach should be the same in that we will be storing data unique to a single individual, and that data should be protected and private from other users/attackers. 
 
@@ -173,11 +173,11 @@
 
   <details>
     <summary>Resources</summary>
-    https://hackr.io/blog/mobile-app-security-standards-checklist
 
-    https://www.lrswebsolutions.com/Blog/Posts/32/Learn-More/2018/11/11-Best-Practices-for-Developing-Secure-Web-Applications/blog-post/
-    https://www.rsisecurity.com/compliance-advisory-services/pci/
-    https://martinfowler.com/articles/web-security-basics.html
+    *  https://hackr.io/blog/mobile-app-security-standards-checklist
+    *  https://www.lrswebsolutions.com/Blog/Posts/32/Learn-More/2018/11/11-Best-Practices-for-Developing-Secure-Web-Applications/blog-post/
+    *  https://www.rsisecurity.com/compliance-advisory-services/pci/
+    *  https://martinfowler.com/articles/web-security-basics.html
   </details>
 </details>
 
