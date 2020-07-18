@@ -300,7 +300,8 @@
   This is a key part of relational database structure, as the structure itself assumes that data that is stored will relate specifically back to something in particular. 
   <details>
     <summary>Resources</summary>
-    https://www.relationaldbdesign.com/database-design/module2/intro-relational-database-structure.php
+
+    *  https://www.relationaldbdesign.com/database-design/module2/intro-relational-database-structure.php
   </details>
 </details>
 
@@ -318,7 +319,8 @@
   Relational databases also require specification of the data type being entered, and this can be further improved upon using application level validation to ensure that the data that is expected in each column is indeed correct.
   <details>
     <summary>Resources</summary>
-    https://www.talend.com/resources/what-is-data-integrity/
+
+    *  https://www.talend.com/resources/what-is-data-integrity/
   </details>
 </details>
 
@@ -328,24 +330,31 @@
 <br>
 
 * **Relational Database Manipulation**
+
+
   Relational databases generally use Structured Query Language in order to store and manipulate information.
 
-  This language allows us to essentially perform relational algebra on a data base in order to select or add the information we want to it without getting bogged down int mathematical terminology.
+  This language allows us to essentially perform relational algebra on a data base in order to select or add the information we want to it without getting bogged down in mathematical terminology and notation.
 
   This allows applications and developers to use powerful statements to not just search through databases, but also to insert and delete information from these databases using fairly semantic inputs. 
   SQL itself is built around the relational database model, so its statements are structured to comply to the relational nature of the database.
 
   For example, if we wanted to insert information into a table named "users", and the fields we want to complete are "name" and "email", we could use the following SQL statement:
+
   ```INSERT INTO users (name, email) VALUES ('Sam', 'sam@sam.com');```
+
   This statement highlights the nature of manipulation in the database. To further highlight this, we could recall the entire row of data using a statement such as:
+
   ```SELECT * FROM users WHERE email = "sam@sam.com";```
+
   This would return all columns from all entries where email matches the query string. 
 
-  Relational databases also intrinsically look through tables that are referenced 
+  Relational databases also intrinsically look through tables that are referenced in the statement.
 
   <details>
     <summary>Resources</summary>
-    https://en.wikipedia.org/wiki/Data_manipulation_language
+    
+    *  https://en.wikipedia.org/wiki/Data_manipulation_language
   </details>
 </details>
 
