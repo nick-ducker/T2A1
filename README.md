@@ -590,23 +590,46 @@
 <details>
 <summary></summary>
 <br>
+
   ### Airbnb
   1. **Describe the software used by the app**
-    Airbnb uses a huge range of software to deliver its two sided marketplace. I will touch on the biggest and most relevant peices of its software stack:
-     * Ruby on Rails: The base framework that Airbnb is built on is Ruby on Rails. Rails is written and operates in Ruby. However, Rails simply handles the backend for airbnb, whereas the front end is handled by React, described below.
-     * React: React is a popular javascript framework used mainly for front end design. This framework is built on the Javascript language. In this case, combining React with Rails gives Airbnb the flexibility in front end design that React caters for, while maintaining a Rails backend.
-     * Nginx: Nginx is a webserver specifically designed to be scalable and flexible under high loads. This webserver is what handles all the http requests of browsers trying to connect to parts of the web application and interacts with the app in order to deliver the desired content.
-     * Redis: Redis is, simply put, a non-relational "caching" database. Redis acts as a temporary place of storage for simple kinds of data. It's purpose is to reduce the amount of calls made to the main database by temporarily holding onto data called from the database, therefore improving speed and potentially decreasing cost.
-     *  Amazon S3: The Amazon S3 database is used to store images and media for the airbnb site.
-     *  Amazon EC2: The Amazon EC2 acts as a cloud host that can respond to the demand of Airbnb traffic. It also means that if Airbnb goes down somewhere, EC2 can take on the extra workload while the problem is fixed.
-     *  Amazon RDS: The Amazon RDS acts as the main and centralised relational database for the Airbnb app.
-     *  Hadoop: Hadoop is a software tool that "splits up" the work of making database queries over more than one computer. Simply put, if one computer makes one large request to the database, the database must send back all of that data to the same computer. But if several computers make smaller requests to the database, the database can deliver all these parts simultaneously to different computers, which then reduce these smaller parts into one larger part, resulting in a faster, more effecient request. 
-     *  Airflow: Airflow is a simple tool that allows tasks to be run in order of operations, automatically. Say for example, you wanted to generate an email, but needed to collect a bunch of data in order to do this properly, and the email itself may look different depending on the state of whatever you're checking it against. Airflow can move through the application and peice these things together once the workflow has been designed for it. 
-     *  Druid: Druid acts as a big data sythesizer, that can listen in on events of the app and aggregate these into statistics. These numbers can be used hand in hand with creating user interfaces relating to these values.
-     *  Twilio SendGrid: Twilio is an API used for sending emails to users.
-     *  Braintree: Braintree is a online payment processor, like Stripe, that allows apps to take payments securely. 
+   
+     Airbnb uses a huge range of software to deliver its two sided marketplace. I will touch on the biggest and most relevant peices of its software stack:
+     * **Ruby on Rails:** The base framework that Airbnb is built on is Ruby on Rails. Rails is written and operates in Ruby. However, Rails simply handles the backend for airbnb, whereas the front end is handled by React, described below.
+  
+     * **React:** React is a popular javascript framework used mainly for front end design. This framework is built on the Javascript language. In this case, combining React with Rails gives Airbnb the flexibility in front end design that React caters for, while maintaining a Rails backend.
+
+     * **Nginx:** Nginx is a webserver specifically designed to be scalable and flexible under high loads. This webserver is what handles all the http requests of browsers trying to connect to parts of the web application and interacts with the app in order to deliver the desired content.
+
+
+     * **Redis:** Redis is, simply put, a non-relational "caching" database. Redis acts as a temporary place of storage for simple kinds of data. It's purpose is to reduce the amount of calls made to the main database by temporarily holding onto data called from the database, therefore improving speed and potentially decreasing cost.
+
+
+     *  **Amazon S3:** The Amazon S3 database is used to store images and media for the airbnb site.
+
+
+     *  **Amazon EC2:** The Amazon EC2 acts as a cloud host that can respond to the demand of Airbnb traffic. It also means that if Airbnb goes down somewhere, EC2 can take on the extra workload while the problem is fixed.
+
+
+     *  **Amazon RDS:** The Amazon RDS acts as the main and centralised relational database for the Airbnb app.
+
+
+     *  **Hadoop:** Hadoop is a software tool that "splits up" the work of making database queries over more than one computer. Simply put, if one computer makes one large request to the database, the database must send back all of that data to the same computer. But if several computers make smaller requests to the database, the database can deliver all these parts simultaneously to different computers, which then reduce these smaller parts into one larger part, resulting in a faster, more effecient request.
+
+
+     *  **Airflow:** Airflow is a simple tool that allows tasks to be run in order of operations, automatically. Say for example, you wanted to generate an email, but needed to collect a bunch of data in order to do this properly, and the email itself may look different depending on the state of whatever you're checking it against. Airflow can move through the application and peice these things together once the workflow has been designed for it. 
+
+
+     *  **Druid:** Druid acts as a big data sythesizer, that can listen in on events of the app and aggregate these into statistics. These numbers can be used hand in hand with creating user interfaces relating to these values.
+
+
+     *  **Twilio SendGrid:** Twilio is an API used for sending emails to users.
+
+
+     *  **Braintree:** Braintree is a online payment processor, like Stripe, that allows apps to take payments securely. 
 
   2. **Describe the hardware used to host the app**
+   
      The entirety of Airbnb's physical hosting is done through Amazon EC2 server hosting. This means the physical hosting of the application is all done via the cloud and is entirely scalable to the needs of Airbnb at any given time. When there is more demand for the application, EC2 simply responds by using more server to handle the load. When the load decreases, those servers stop hosting.
      
      Airbnb also uses Amazon S3 and RDS for its data hosting, which again, allows it to scale its cloud based hardware with its needs.        
@@ -614,26 +637,274 @@
      The huge upshot of using a cloud based system is that it cuts out a huge amount of work for a company if they don't have to worry about storing and maintaining servers. The downside here is that as the application grows and demands more resources, the cost of these resources intrinsically increases.
   
   3. **Describe the interaction of technologies within the app** 
-    Ruby on Rails acts as the base framework for the airbnb application. This handles all the back end processing of the application. The is intergrated with React in order to create a complex front end that is able to dynamically render content depending on the browser state. All of this is served through the Nginx webserver which handles the connections and requests from browsers asking for data from the application. When a request is made to the application through the webserver and a database query needs to be made, this is done through an interplay of a few different technologies. For images, the application will query the S3 database, which is responsible for cloud storage of media. For other database queries, the application will interrogate the RDS, Amazons relational SQL database, using Hadoop, to split the requests over multiple ports of call and then reduce them into the final data object, to complete the request faster. At this stage, what can be cached in Redis, which is reponsible for temporarily holding onto specific data types in a non-relational way, will be cached, so less successive database queries need to be made if the browser returns to an old page, or a new page requires the same data as a previous one. Running in parallel with all of this are a few technologies also. Airflow, responsible for workflow automation, will be working in the background, automating tasks that must be done according to a workflow, such as email, which is then handled by the Twilio SendGrid API. Druid is also listening in to the events on the application and presumably having that data synthesized meaningfully elsewhere. Braintree is the payment processor that steps in when a payment action is required on the site. 
+    
+      Ruby on Rails acts as the base framework for the airbnb application. This handles all the back end processing of the application. The is intergrated with React in order to create a complex front end that is able to dynamically render content depending on the browser state. All of this is served through the Nginx webserver which handles the connections and requests from browsers asking for data from the application. When a request is made to the application through the webserver and a database query needs to be made, this is done through an interplay of a few different technologies. For images, the application will query the S3 database, which is responsible for cloud storage of media. For other database queries, the application will interrogate the RDS, Amazons relational SQL database, using Hadoop, to split the requests over multiple ports of call and then reduce them into the final data object, to complete the request faster. At this stage, what can be cached in Redis, which is reponsible for temporarily holding onto specific data types in a non-relational way, will be cached, so less successive database queries need to be made if the browser returns to an old page, or a new page requires the same data as a previous one. Running in parallel with all of this are a few technologies also. Airflow, responsible for workflow automation, will be working in the background, automating tasks that must be done according to a workflow, such as email, which is then handled by the Twilio SendGrid API. Druid is also listening in to the events on the application and presumably having that data synthesized meaningfully elsewhere. Braintree is the payment processor that steps in when a payment action is required on the site. 
 
-    This is all hosted and scaled on AWS services, which look after the maintenance and scaling of the application, leaving the application team to solely focus on the interplay of the apps technologies without worrying about the size or speed limitations of the hardware needed.
+      This is all hosted and scaled on AWS services, which look after the maintenance and scaling of the application, leaving the application team to solely focus on the interplay of the apps technologies without worrying about the size or speed limitations of the hardware needed.
 
   4. **Describe the way data is structured within the app**
-    Airbnb is a two way marketplace, which means its data structure will generally conform to a few concepts. In a two way marketplace, there are two users, one is a buyer and one is a seller. These users can be fundamentally differentiated in how they are regarded as data, or every user can be both. In the case of Airbnb, every user can be both a buyer and a seller.
 
-    A point of user data will generally hold on to all the details unique and specific to that user, as well as pointing to anything that may relate to that user, whether it be places they're hosting from, experiences they're delivering or simply favorites they've saved to look at later.
+       Airbnb is a two way marketplace, which means its data structure will generally conform to a few concepts. In a two way marketplace, there are two users, one is a buyer and one is a seller. These users can be fundamentally differentiated in how they are regarded as data, or every user can be both. In the case of Airbnb, every user can be both a buyer and a seller.
 
-    A marketplace generally has some kind of product that is being sold by users. In the case of airbnb, there are two fundamental products that the application caters to; accommodation and experiences. Users can both create and sell these things as well as buy/book these things from other users.
+       A point of user data will generally hold on to all the details unique and specific to that user, as well as pointing to anything that may relate to that user, whether it be places they're hosting from, experiences they're delivering or simply favorites they've saved to look at later.
 
-    Both of these points of data would hold on to a bit of data unique to themselves, like name and description, while potentially pointing to other things such as reviews, category, amenities, features and ratings which may exist over more than one place of experience.
+       A marketplace generally has some kind of product that is being sold by users. In the case of airbnb, there are two fundamental products that the application caters to; accommodation and experiences. Users can both create and sell these things as well as buy/book these things from other users.
 
-    In order to handle the actual booking of these places/experiences, there would also need to be a data structure that handles the booking that can be referred to for the seller, the buyer and others interested in the product.
+       Both of these points of data would hold on to a bit of data unique to themselves, like name and description, while potentially pointing to other things such as reviews, category, amenities, features and ratings which may exist over more than one place of experience.
 
-    Reviews would be a part of the data structure also, and can be associated with any of the above parts of the structure depending on the context. For example, a review might be a user review, or an experience review, etc. 
+       In order to handle the actual booking of these places/experiences, there would also need to be a data structure that handles the booking that can be referred to for the seller, the buyer and others interested in the product.
 
-    The inbuilt messaging tool also is a part of the data structure that needs to be considered. Users can have multiple conversations with unique messages in each that are attributed to a unique user.
+       Reviews would be a part of the data structure also, and can be associated with any of the above parts of the structure depending on the context. For example, a review might be a user review, or an experience review, etc. 
 
-  5. 
+       The inbuilt messaging tool also is a part of the data structure that needs to be considered. Users can have multiple conversations with unique messages in each that are attributed to a unique user.
+
+  5. **Tracked entities**
+
+      For brevity I have only mapped the airbnb marketplace for the interaction of users and rooms, omitting experiences. I understand that experiences operate in much a similar way to rooms, but I think that demonstrating the same thing twice is unnessecary and would sacrifice readability.
+
+      * **Users:** Stores all unique information relevant to a specific user, such as name, password, email and other personal details. Also contains id numbers for other services such as google and facebook and boolean values regarding the users particular binary settings.
+      * **User reviews:** Contains a short review of a particular user, from another user
+      *  **User review comments:** a responding comment of a user review, from another user.
+      *  **Card details:** Contains all the card details of a particular users card and its country
+      *  **Country:** Contains all countries
+      *  **Paypals:** Contains all paypals, each specific to a different user.
+      *  **Australian Bank Details:** Contains all bank details, each specific to a different user.
+      *  **VAT id's:** Contains VAT tax codes, each speficic to a different user.
+      *  **Notification preferences:** A series of entities that contain boolean operators regarding if a particular user wishes to be notified and in which ways they want to be notified. The entities are separate as the same way of communicating can be used for different types of notification, for example, account vs policy notifications via text. 
+      *  **Languages:** Contains all spoken languages.
+      *  **User languages:** A joining entity between languages and users.
+      *  **Emergency Contacts:** Contains contact and relationship information about a specific individual and which user they relate to.
+      *  **Conversations:** Contains the information regarding a particular booking and the two users interacting
+      *  **Message:** Contains a message as well as the user who sent it and what conversation it is a part of.
+      *  **Saves:** A list of favorites, or saves, that contains information about the room saved and the user who saved it.
+      *  **Genders:** A simple entity to store different genders assignable to a user.
+      *  **Site languages:** Contains all the name of languages that the site can be displayed in.
+      *  **Currencies:** Contains all the available currencies for transaction on Airbnb.
+      *  **Timezones:** Contains all the timezones.
+
+
+      *  **Rooms:** Contains information specific to a room, such as the host, its rating, prices and fees, its location, number of beds, bathrooms and its description.
+      *  **Room Categories**: Contains a list of possible room categories.
+      *  **Room cancellation policies:** Contains information on a cancellation policly, like how many hours for a free cancel, what window there is for a partial refund, what percentage is refunded, and whether a service fee is charged.
+      *  **Check-in types:** A list of different types of check-in for rooms.
+      *  **Room discount policies:** Conatins information as to whether a room has a weekly or monthly discount, and if so, what the percentages of those discounts are.
+      *  **Room pictures:** Simply contains a bunch of pointers to amazon s3 images for a particular room.
+      *  **Room amenities:** Is a joining entity for rooms and amenitites
+      *  **Amenities:** Contains a list of amenities.
+      *  **Room reviews:** Contains information about a room and a user who stayed their as well as a review.
+      *  **Ratings:** Contains a set of values relating to a room review around the different aspects of a room.
+
+
+      *  **Bookings:** Contains information about the user booking, the room to be booked, the dates of booking and amount of nights, as well as if the booking has been cancelled and what that cancellation cut-off is.
+      *  **Transactions:** Contains information about the booking it relates to, as well as the payer and payee information, the currency to be paid, the price, discount, total and deadline for this payment. It also tracks whether the payment is outstanding and whether its a refund.
+  
+  6. **Entity relationships**
+
+      * **Users:** 
+      
+        Has one:
+          * Gender
+          * Site language
+          * Currency
+          * Timezone
+          * Paypal
+          * Bank details
+          * VAT
+          * Notification Preferences
+
+        Has many:
+          * Languages THROUGH User Languages
+          * Emergency contacts
+          * Messages
+          * Conversations
+          * Rooms
+          * Bookings
+          * Transactions
+          * Card Details
+          * Saves
+          * Room Reviews
+          * User Reviews
+          * User Review Comments
+          * Emergency Contacts
+
+      * **Notifications Preferences:**
+
+        Belongs to:
+          * User
+
+      * **VATS:**
+
+        Belongs to:
+          * User
+
+      * **Bank Details:**
+
+        Belongs to:
+          * User
+
+      * **Paypals:**
+
+        Belongs to:
+          * User
+
+      * **Card Details:**
+
+        Belongs to:
+          * User
+
+        Has one:
+          * Country
+
+      * **Countries:**
+
+        Belongs to:
+          * Card details
+
+      * **Saves:**
+
+        Belongs to:
+          * User
+          * Room
+
+      * **User Reviews:**
+
+        Belongs to:
+          * Reviewer
+          * Reviewee
+
+        Has many: 
+          * User Review Comments
+
+      * **User Review Comments:**
+
+        Belongs to:
+          * User Review
+
+        * **Emergency contact:**
+
+        Belongs to:
+          * User
+
+        Has one:
+          * Language
+
+      * **User Languages:**
+
+        Has many:
+          * Users
+          * Languages
+
+      * **Messages:**
+
+        Belongs to:
+          * User
+          * Conversation
+
+      * **Conversations:**
+
+        Belongs to:
+          * Host
+          * Client
+          * Booking
+
+        Has many:
+          * Messages
+
+      * **Rooms:**
+
+        Belongs to:
+          * User
+      
+        Has one:
+          * Room Category
+          * Room Cancellation Policy
+          * Checkin type
+          * Discount Policy
+
+        Has many: 
+          * Room pictures
+          * Amenitites THROUGH Room Amenities
+          * Room Reviews
+          * Bookings
+          * Saves
+
+      * **Room Categories:**
+
+        Has many:
+          * Rooms
+
+      * **Checkin type:**
+
+        Has many:
+          * Rooms
+
+      * **Room Cancellation Policy:**
+
+        Belongs to:
+          * Room
+
+      * **Discount Policy:**
+
+        Belongs to:
+          * Room
+
+      * **Room Pictures:**
+
+        Belongs to:
+          * Room
+
+      * **Room Amenities:**
+
+        Has many:
+          * Rooms
+          * Amenities
+
+      * **Amenities:**
+
+        Has many:
+          * Rooms THROUGH Room Amenities
+
+      * **Room Reviews:**
+
+        Belongs to:
+          * Room
+          * User
+
+        Has one:
+          * Rating
+
+      * **Ratings:**
+
+        Belongs to:
+          * Room review
+
+      * **Booking:**
+
+        Belongs to:
+          * Room
+        
+        Has one: 
+          * User
+          * Conversation
+
+        Has many:
+          * Transactions
+
+      * **Transactions:**
+
+        Belongs to:
+          * Booking
+          * Payer
+          * Payee
+
+        Has one:
+          * Currency
+    
+   
+  7. **Airbnb database schema**
+
+      ![airbnb ERD](docs/airbnberd.png)
+
   <details>
     <summary>Resources</summary>
     https://www.airbnb.com.au
