@@ -353,7 +353,7 @@
 
   <details>
     <summary>Resources</summary>
-    
+
     *  https://en.wikipedia.org/wiki/Data_manipulation_language
   </details>
 </details>
@@ -366,6 +366,8 @@
 * **Sorting Algorithms**
 
   * Selection Sort
+
+
     A selection sorting algorithm is a simple sorting algorithm used to sort an array in ascending order.
 
     The basic idea behind a selection sort algorithm is that it will iterate through an array and select the lowest number from the array and place that into a sorted array.
@@ -429,22 +431,24 @@
     end
     ```
 
-    * Counting Sort
-      The counting sort is interesting in that it can perform faster than most sorting methods if the right conditions are present. It should be noted that the counting sort is only an option for arrays of integers.
+  * Counting Sort
 
-      The speed counting sort relies on two integral things. The range of an array must be known and the range should not be drastically larger than the number of elements in the array. For example, a 5 element array with a range of 1 to 10,000 will run much slower than an 100 element array with an range of 100.
 
-      The basic premise behind a counting sort is that it creates another array (or hash) that is responsible for counting the number of times a particular value appears in an array. 
-      First we create an array or hash with the same range as the array to be sorted. For this example I will use a hash.
+    The counting sort is interesting in that it can perform faster than most sorting methods if the right conditions are present. It should be noted that the counting sort is only an option for arrays of integers.
 
-      We then iterate over the array to be sorted and increment the count on each corresponding hash key by one until we reach the end of the input array. 
-      We now have a hash of integer keys that point to the amount of times they occur in the input array.
+    The speed counting sort relies on two integral things. The range of an array must be known and the range should not be drastically larger than the number of elements in the array. For example, a 5 element array with a range of 1 to 10,000 will run much slower than an 100 element array with an range of 100.
 
-      Now we can iterate through our counting hash and input the key into a new hash corresponding to the value. For example, if the key "3" has a value of 7, we would push 3 onto the new array 7 times. We continue doing this until we reach the end of our counting hash.
+    The basic premise behind a counting sort is that it creates another array (or hash) that is responsible for counting the number of times a particular value appears in an array. 
+    First we create an array or hash with the same range as the array to be sorted. For this example I will use a hash.
 
-      We now have a new array with the sorted values of the old array. 
+    We then iterate over the array to be sorted and increment the count on each corresponding hash key by one until we reach the end of the input array. 
+    We now have a hash of integer keys that point to the amount of times they occur in the input array.
 
-      There are many different ways to do this that are more space efficient and use only two arrays rather than an array and a hash.
+    Now we can iterate through our counting hash and input the key into a new hash corresponding to the value. For example, if the key "3" has a value of 7, we would push 3 onto the new array 7 times. We continue doing this until we reach the end of our counting hash.
+
+    We now have a new array with the sorted values of the old array. 
+
+    There are many different ways to do this that are more space efficient and use only two arrays rather than an array and a hash.
 
       ```ruby
         def counting_sort(arr,range)
@@ -477,42 +481,46 @@
       end
       ``` 
 
+***
 
-    In terms of Big-O notation, we can see that the selection sort method uses two loops to achieve the desired output, one nested inside of another.
+  In terms of Big-O notation, we can see that the selection sort method uses two loops to achieve the desired output, one nested inside of another.
 
-    If there was only one loop, then the complexity would grow linearly. This basically means if we asked a program to iterate over an array of 10 elements, it would take 10 times the amount of time to do the same operation over a list of 100 elements. We can say that the complexity of the method grows linearly with the amount of data points given to it. This is expressed as O(n).
+  If there was only one loop, then the complexity would grow linearly. This basically means if we asked a program to iterate over an array of 10 elements, it would take 10 times the amount of time to do the same operation over a list of 100 elements. We can say that the complexity of the method grows linearly with the amount of data points given to it. This is expressed as O(n).
 
-    But, as previously mentioned, the above method uses a nested loop. In this particular example the program will have to iterate over the array, eg O(n), but within that iteration, another iteration occurs, eg another O(n). This gives us O(n2), or the square of N is now the complexity. So to use our previous example, an array of 10 elements is no longer O(10), but O(10*10). Now our array of 10 elements takes as much time to process as our array of 100 elements, and our array of 100 elements takes 100 times longer than it did previously.
+  But, as previously mentioned, the above method uses a nested loop. In this particular example the program will have to iterate over the array, eg O(n), but within that iteration, another iteration occurs, eg another O(n). This gives us O(n2), or the square of N is now the complexity. So to use our previous example, an array of 10 elements is no longer O(10), but O(10*10). Now our array of 10 elements takes as much time to process as our array of 100 elements, and our array of 100 elements takes 100 times longer than it did previously.
 
-    As we can see, these numbers grow quite quickly with larger datasets.
+  As we can see, these numbers grow quite quickly with larger datasets.
 
-    The counting sort provides an interesting example of Big-O notation. 
-    Technically, the complexity of the counting sort above is O(n). However, the size of this N value is dependant on the size of the range of the array to be sorted.
+  The counting sort provides an interesting example of Big-O notation. 
+  Technically, the complexity of the counting sort above is O(n). However, the size of this N value is dependant on the size of the range of the array to be sorted.
 
-    We can express this more clearly by writing O(n + k), where n is the size of the input array and k is the size of the range. While this complexity is linear, if we had a very large range, like 10,000, and a small array, like 5, we're iterating through a large number of keys in a hash for only a small amount of elements to sort. 
+  We can express this more clearly by writing O(n + k), where n is the size of the input array and k is the size of the range. While this complexity is linear, if we had a very large range, like 10,000, and a small array, like 5, we're iterating through a large number of keys in a hash for only a small amount of elements to sort. 
 
-    Within the above example it should also be noted that there is technically a nested loop that executes every time a value more than 0 is found in the count hash. This does not add to the Big-O complexity however, as this times loop will only ever execute as many times as the input array is large, instead of fully looping through the input array each time it is called. It therefore does not make the notation O(n2)
+  Within the above example it should also be noted that there is technically a nested loop that executes every time a value more than 0 is found in the count hash. This does not add to the Big-O complexity however, as this times loop will only ever execute as many times as the input array is large, instead of fully looping through the input array each time it is called. It therefore does not make the notation O(n2)
 
-    Where the counting sort really shines is where we know the range will be close to, or less than the size of the array to be sorted.
+  Where the counting sort really shines is where we know the range will be close to, or less than the size of the array to be sorted.
 
-    To comparing these methods is a matter of context. If we have an array where the range of the integers to be sorted is known and close to or less than the number of elements in the array, the counting sort is superior.
+  To comparing these methods is a matter of context. If we have an array where the range of the integers to be sorted is known and close to or less than the number of elements in the array, the counting sort is superior.
 
-    for example:
-    Array Size = 50, Range = 70  
-      => Counting Sort = O(120)
-      => Selection Sort = O(2500)
+  For example:
+  ```
+  Array Size = 50, Range = 70  
+    => Counting Sort = O(120)
+    => Selection Sort = O(2500)
 
-    Array Size = 50, Range = 5,000
-      => Counting Sort = O(5,050)
-      => Selection Sort = O(2500)
+  Array Size = 50, Range = 5,000
+    => Counting Sort = O(5,050)
+    => Selection Sort = O(2500)
+  ```
 
-      We can see here, according to context, that the counting sort works better in the correct context; with integers and when the range is known.
-  
+  We can see here, according to context, that the counting sort works better in the correct context; with integers and when the range is known.
+
   <details>
     <summary>Resources</summary>
-    https://gist.github.com/brianstorti/953310
-    https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
-    https://medium.com/basecs/counting-linearly-with-counting-sort-cd8516ae09b3
+
+  *  https://gist.github.com/brianstorti/953310
+  *  https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+  *  https://medium.com/basecs/counting-linearly-with-counting-sort-cd8516ae09b3
   </details>
 </details>
 
@@ -583,19 +591,21 @@
         end
       end
     ```
+***
 
-    In terms of Big-O notation, both of these search methods are relatively low complexity, especially when contrasted with the sorting algorithms. However there are differences between the two search methods described above.
+  In terms of Big-O notation, both of these search methods are relatively low complexity, especially when contrasted with the sorting algorithms. However there are differences between the two search methods described above.
 
-    The linear search has a Big-O complexity of O(n), so the complexity increases linearly with the number of elements given to it. It will take 100 times longer to iterate over 1,000 elements as it would 10. As we can see, this is fine up to a point, but if we're working with large datasets this can become an issue.
+  The linear search has a Big-O complexity of O(n), so the complexity increases linearly with the number of elements given to it. It will take 100 times longer to iterate over 1,000 elements as it would 10. As we can see, this is fine up to a point, but if we're working with large datasets this can become an issue.
 
-    This is where the binary search can shine. As long as the array is sorted then the binary search has a complexity of O(log n). log n is basically the opposite to exponential growth. Exponential means that with every operation our workload increases by double or more. Logarithmic is the opposite, meaning our workload will be at least halved on each operation. Looking at the code above, we can see that the binary search function quite literally halves our array each time it performs our method. This results in a logarithmic runtime, and can be easily visualised as a curve on a graph that starts steep, then flattens out as time goes on. 
+  This is where the binary search can shine. As long as the array is sorted then the binary search has a complexity of O(log n). log n is basically the opposite to exponential growth. Exponential means that with every operation our workload increases by double or more. Logarithmic is the opposite, meaning our workload will be at least halved on each operation. Looking at the code above, we can see that the binary search function quite literally halves our array each time it performs our method. This results in a logarithmic runtime, and can be easily visualised as a curve on a graph that starts steep, then flattens out as time goes on. 
 
-    With large datasets, this can be powerful. If we have a dataset of 10,000 data points, and we double this to 20,000, a O(log n) function like a binary search will only take one extra operation to reach the same complexity as the same method run with 10,000 data points. Very cool. 
+  With large datasets, this can be powerful. If we have a dataset of 10,000 data points, and we double this to 20,000, a O(log n) function like a binary search will only take one extra operation to reach the same complexity as the same method run with 10,000 data points. Very cool. 
 
   <details>
     <summary>Resources</summary>
-    https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
-    https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702
+
+  *  https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+  *  https://medium.com/better-programming/a-gentle-explanation-of-logarithmic-time-complexity-79842728a702
   </details>
 </details>
 
