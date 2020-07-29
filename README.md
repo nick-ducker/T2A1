@@ -39,7 +39,7 @@
 
   PostgreSQL is a common database used in web applications. While it is currently one of the most popular database management systems (DBMS) in use today, there are also some specific drawbacks to it. 
 
-  Pro's
+  **Pro's**
     * PostgreSQL is an older, open source DBMS. Due to this, it is compatible with many languages and many OS's such as Linux, Mac and Windows. Additionally, this means that PostgreSQL is also extremely stable and easy to integrate into new and existing projects. 
     * As an open source DBMS, PostgreSQL is free to use for your application in whatever capacity you need it to operate in, no questions asked.
     * As an open source DBMS, PostgreSQL has a large and diverse community of developers who are consistently contributing to the codebase.
@@ -47,10 +47,12 @@
     * It is the closest DBMS to full SQL compliance.
     * PostgreSQL is able to handle multiple users concurrently requesting and storing data at the same time. This means data is less likely to become corrupted during these operations and results in a much more robust web application.
 
-  Con's
+  **Con's**
     * As an open source project, PostgreSQL is always changing. These changes must be documented but the standard of documentation is not consistent across the board. This essentially means you may spend a lot of time searching for documentation surrounding some of PostgreSQL darker corners. 
     * While PostgreSQL's ability to handle multiple users is one of its perks, the way it does this can become a con. When a connection is made, it is allocated approximately 10mb of memory. Naturally, this can add up quite quickly and is overkill for some operations.
     * There are not as many tools available to aid with the management of a PostgreSQL database.  
+  
+
   <details>
     <summary>Resources</summary>
 
@@ -820,7 +822,6 @@
       * **Messages:**
 
         Belongs to:
-          * User
           * Conversation
 
       * **Conversations:**
